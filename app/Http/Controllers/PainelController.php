@@ -14,6 +14,7 @@ class PainelController extends Controller
 
     public function index()
     {
-        return view('painel.index');
+        $title = 'Dashboard';
+        return view('painel.index', compact('title'));
     }
 }
