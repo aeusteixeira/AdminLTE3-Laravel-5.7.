@@ -1,7 +1,7 @@
 <div class="row">
     @if (isset($view))
         <div class="col-4 text-center">
-        <a href="{{ route('viewCrud', ['url' => $url, 'id' => $id] )}}" class="btn btn-info btn-sm text-light" target="_blank">
+        <a href="{{ route('viewCrud', ['url' => $url, 'id' => $id] )}}" class="btn btn-info btn-sm text-light">
                 <i class="fas fa-eye"></i>
             </a>
         </div>

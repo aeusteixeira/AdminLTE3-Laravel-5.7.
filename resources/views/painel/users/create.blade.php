@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card">
-    <form action="{{ route('users.store') }}" method="POST">
+    <form action="{{ route('admin.users.store') }}" method="POST">
         @csrf
         <div class="card-body">
             <div class="card card-outline card-success">

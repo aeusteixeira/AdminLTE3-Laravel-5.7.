@@ -35,7 +35,7 @@ class UserController extends Controller
     {
         $user = new User();
         $user->create($request->except(['_token']));
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 
     public function show($id)
@@ -53,7 +53,7 @@ class UserController extends Controller
         if (isset($user)) {
             return view('painel.users.edit', compact('user', 'units', 'levels', 'title'));
         } else {
-            return redirect()->route('user.index');
+            return redirect()->route('admin.user.index');
         }
     }
 
@@ -72,9 +72,9 @@ class UserController extends Controller
             $user->save();
             */
             $user->update($request->except(['_token']));
-            return redirect()->route('users.index');
+            return redirect()->route('admin.users.index');
         }else{
-            return redirect()->route('users.index');
+            return redirect()->route('admin.users.index');
         }
     }
 
@@ -83,9 +83,9 @@ class UserController extends Controller
         $user = User::find($id);
         if(isset($user)){
             $user = User::destroy($id);
-            return redirect()->route('users.index');
+            return redirect()->route('admin.users.index');
         }else{
-            return redirect()->route('users.index');
+            return redirect()->route('admin.users.index');
         }
 
     }

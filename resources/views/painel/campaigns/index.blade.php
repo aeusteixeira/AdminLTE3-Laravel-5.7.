@@ -5,10 +5,10 @@
 @component('components.add')
     @slot('add')
         @slot('url')
-            admin/users
+            campaigns
         @endslot
         @slot('action')
-            Criar usuário
+            Criar campanha
         @endslot
     @endslot
 @endcomponent
@@ -18,54 +18,49 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nome</th>
-        <th scope="col">Nivel</th>
-        <th scope="col">Associação</th>
+        <th scope="col">Descrição</th>
         <th scope="col">Ações</th>
       </tr>
     </thead>
     <tbody>
-        @foreach ($users as $user)
+        @foreach ($campaigns as $campaign)
         <tr>
             <th scope="row">
-                {{ $user->id }}
+                {{ $campaign->id }}
             </th>
             <td>
-                {{ $user->name }}
+                {{ $campaign->name_private }}
             </td>
             <td>
-                {{ $user->level['name'] }}
-            </td>
-            <td>
-                {{ $user->unit['name'] }}
+                @switch($campaign->status)
+                @case('active')
+                <span class="badge badge-success">Ativa</span>
+                    @break
+                @case('paused')
+                    <span class="badge badge-warning">Pausada</span>
+                    @break
+                @default
+                    <span class="badge badge-danger">Finalizada</span>
+            @endswitch
             </td>
             <td>
                 @component('components.crud')
                 @slot('view')
                     @slot('url')
-                        users
+                        marketing/campaigns
                     @endslot
                     @slot('id')
-                        {{ $user->id }}
+                        {{ $campaign->id }}
                     @endslot
                 @endslot
                 @slot('edit')
                     @slot('url')
-                        users
+                        marketing/campaigns
                     @endslot
                     @slot('id')
-                        {{ $user->id }}
+                        {{ $campaign->id }}
                     @endslot
                 @endslot
-                @if($user->id !== Auth::user()->id)
-                    @slot('delete')
-                        @slot('url')
-                            admin/users
-                        @endslot
-                        @slot('id')
-                            {{ $user->id }}
-                        @endslot
-                    @endslot
-                @endif
             @endcomponent
             </td>
           </tr>

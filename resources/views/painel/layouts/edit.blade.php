@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card">
-<form action="{{ route('layouts.update', ['id' => $layout->id]) }}" method="POST">
+<form action="{{ route('admin.layouts.update', ['id' => $layout->id]) }}" method="POST">
 @csrf
 @method('PUT')
 <div class="card-body">

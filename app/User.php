@@ -39,7 +39,12 @@ class User extends Authenticatable
         return $this->hasOne(Unit::class, 'id', 'unit_id');
     }
 
-    public function getCreatedFmAttribute(){
-        return date('m/Y', strtotime($this->created_at));
+    public function comments()
+    {
+        return $this->belongsToMany(Register::class, 'comments_campaign_registers');
     }
+
+    //public function getCreatedFmAttribute(){
+    //    return date('m/Y', strtotime($this->created_at));
+    //}
 }

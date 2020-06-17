@@ -5,7 +5,7 @@
 @component('components.add')
     @slot('add')
         @slot('url')
-            units
+            admin/units
         @endslot
         @slot('action')
             Criar unidade
@@ -38,7 +38,7 @@
                 @component('components.crud')
                 @slot('edit')
                     @slot('url')
-                        units
+                        admin/units
                     @endslot
                     @slot('id')
                         {{ $unit->id }}

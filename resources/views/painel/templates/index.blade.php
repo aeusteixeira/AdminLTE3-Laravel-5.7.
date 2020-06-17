@@ -5,7 +5,7 @@
 @component('components.add')
     @slot('add')
         @slot('url')
-            templates
+            admin/templates
         @endslot
         @slot('action')
             Criar template
@@ -42,7 +42,7 @@
                 @component('components.crud')
                 @slot('edit')
                     @slot('url')
-                        templates
+                        admin/templates
                     @endslot
                     @slot('id')
                         {{ $template->id }}

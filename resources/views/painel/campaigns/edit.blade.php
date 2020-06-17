@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card">
-    <form action="{{ route('admin.users.update', ['id' => $user->id]) }}" method="POST">
+    <form action="{{ route('users.update', ['id' => $user->id]) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="card-body">

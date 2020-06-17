@@ -12,7 +12,7 @@ class UnitController extends Controller
     {
         $units = Unit::all();
         $title = 'Unidades';
-        return view('painel.units.index', compact('units', 'title'));
+        return view('painel.units.index', compact('admin.units', 'title'));
     }
 
     public function create()
@@ -27,7 +27,7 @@ class UnitController extends Controller
         $unit->name = $request->input('name');
         $unit->description = $request->input('description');
         $unit->save();
-        return redirect()->route('units.index');
+        return redirect()->route('admin.units.index');
     }
 
     public function show($id)
@@ -42,7 +42,7 @@ class UnitController extends Controller
             $title = 'Editar unidade';
             return view('painel.units.edit', compact('unit', 'title'));
         } else {
-            return redirect()->route('units.index');
+            return redirect()->route('admin.units.index');
         }
     }
 
@@ -53,9 +53,9 @@ class UnitController extends Controller
             $unit->name = $request->input('name');
             $unit->description = $request->input('description');
             $unit->save();
-            return redirect()->route('units.index');
+            return redirect()->route('admin.units.index');
         }else{
-            return redirect()->route('units.index');
+            return redirect()->route('admin.units.index');
         }
     }
 

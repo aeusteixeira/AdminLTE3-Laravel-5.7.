@@ -5,7 +5,7 @@
 @component('components.add')
     @slot('add')
         @slot('url')
-            levels
+            admin/levels
         @endslot
         @slot('action')
             Criar nível
@@ -38,7 +38,7 @@
                 @component('components.crud')
                 @slot('edit')
                     @slot('url')
-                        levels
+                        admin/levels
                     @endslot
                     @slot('id')
                         {{ $level->id }}

@@ -5,7 +5,7 @@
 @component('components.add')
     @slot('add')
         @slot('url')
-            layouts
+            admin/layouts
         @endslot
         @slot('action')
             Criar layout
@@ -34,7 +34,7 @@
                 @component('components.crud')
                 @slot('edit')
                     @slot('url')
-                        layouts
+                        admin/layouts
                     @endslot
                     @slot('id')
                         {{ $layout->id }}

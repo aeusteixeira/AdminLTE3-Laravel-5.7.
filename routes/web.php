@@ -2,13 +2,18 @@
 
 Route::get('/', 'PainelController@index')->name('home.index');
 
+
 Auth::routes();
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
+
     Route::group(['prefix' => 'index', 'as' => 'dashboard.'], function(){
         Route::get('/', 'PainelController@index')->name('index');
         Route::get('support', 'SuportController@index')->name('support.index');
         Route::get('divulgation', 'DivulgationController@index')->name('divulgation.index');
+        Route::get('trainings', 'PostController@trainings')->name('trainings.index');
+        Route::get('information', 'PostController@information')->name('information.index');
     });
+
     //Rotas de Admin
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
         Route::resource('users', 'UserController');
@@ -21,7 +26,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     //Rotas de Marketing
     Route::group(['prefix' => 'marketing', 'as' => 'mkt.'], function(){
         Route::resource('campaigns', 'CampaignController');
-        Route::resource('email-marketing', 'EmailController');
+        Route::resource('email', 'EmailController');
+        Route::resource('registers', 'RegisterUserController');
+        Route::post('registers/comment', 'CommentsCampaignRegistersController@store')->name('comment');
     });
 
     //Rotas de CRUD

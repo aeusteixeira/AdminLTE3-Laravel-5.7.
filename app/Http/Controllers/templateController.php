@@ -28,7 +28,7 @@ class templateController extends Controller
         $template->address = $request->input('address');
         $template->description = $request->input('description');
         $template->save();
-        return redirect()->route('templates.index');
+        return redirect()->route('admin.templates.index');
     }
 
     public function show(Template $template)
@@ -43,7 +43,7 @@ class templateController extends Controller
             $title = 'Editar templates';
             return view('painel.templates.edit', compact('template', 'title'));
         } else {
-            return redirect()->route('templates.index');
+            return redirect()->route('admin.templates.index');
         }
     }
 
@@ -55,9 +55,9 @@ class templateController extends Controller
             $template->address = $request->input('address');
             $template->description = $request->input('description');
             $template->save();
-            return redirect()->route('templates.index');
+            return redirect()->route('admin.templates.index');
         }else{
-            return redirect()->route('templates.index');
+            return redirect()->route('admin.templates.index');
         }
     }
 

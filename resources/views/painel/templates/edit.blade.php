@@ -7,7 +7,7 @@
     A configuração dos templates deve ser feita somente pelo administrador do sistema.
   </div>
     <div class="card">
-    <form action="{{ route('templates.update', ['id' => $template->id]) }}" method="POST">
+    <form action="{{ route('admin.templates.update', ['id' => $template->id]) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="card card-outline card-success">

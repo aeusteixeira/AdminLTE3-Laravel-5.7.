@@ -7,7 +7,7 @@
     A configuração dos templates deve ser feita somente pelo administrador do sistema.
   </div>
     <div class="card">
-    <form action="{{ route('templates.store') }}" method="POST">
+    <form action="{{ route('admin.templates.store') }}" method="POST">
         @csrf
         <div class="card card-outline card-success">
             <div class="card-header">
@@ -37,7 +37,7 @@
                 </section>
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-success">Cadastrar unidade</button>
+            <button type="submit" class="btn btn-success">Cadastrar template</button>
             <a class="btn btn-default float-right">Cancel</a>
         </div>
     </form>

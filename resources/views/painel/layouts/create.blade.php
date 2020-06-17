@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card">
-<form action="{{ route('layouts.store') }}" method="POST">
+<form action="{{ route('admin.layouts.store') }}" method="POST">
 @csrf
 <div class="card-body">
     <div class="card card-outline card-success">

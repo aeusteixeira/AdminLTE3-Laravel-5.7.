@@ -38,7 +38,7 @@ class layoutCampaignController extends Controller
         $layout->district_input = $request->input('district_input');
 
         $layout->save();
-        return redirect()->route('layouts.index');
+        return redirect()->route('admin.layouts.index');
     }
 
     public function show(Layout $layout)
@@ -53,7 +53,7 @@ class layoutCampaignController extends Controller
             $title = 'Editar layout';
             return view('painel.layouts.edit', compact('layout', 'title'));
         } else {
-            return redirect()->route('layouts.index');
+            return redirect()->route('admin.layouts.index');
         }
     }
 
@@ -71,9 +71,9 @@ class layoutCampaignController extends Controller
             $layout->city_input = $request->input('city_input');
             $layout->district_input = $request->input('district_input');
             $layout->save();
-            return redirect()->route('layouts.index');
+            return redirect()->route('admin.layouts.index');
         }else{
-            return redirect()->route('layouts.index');
+            return redirect()->route('admin.layouts.index');
         }
     }
 
