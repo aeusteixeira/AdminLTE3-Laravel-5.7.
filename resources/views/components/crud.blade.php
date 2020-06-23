@@ -17,7 +17,7 @@
 
     @if (isset($delete))
         <div class="col-4 text-center">
-            <form action="{{ route('viewCrud', ['url' => $url, 'id' => $id] )}}" method="POST" onSubmit="if(!confirm('Você quer realmente deletar este usuário?')){return false;}">
+            <form action="{{ route('viewCrud', ['url' => $url, 'id' => $id] )}}" method="POST" onSubmit="if(!confirm('Você quer realmente deletar este registro?')){return false;}">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger btn-sm">

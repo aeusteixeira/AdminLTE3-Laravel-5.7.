@@ -6,10 +6,18 @@ Route::get('/', 'PainelController@index')->name('home.index');
 Auth::routes();
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
+    Route::get('/', function(){
+        return redirect()->route('dashboard.index');
+    });
+
+    Route::get('users/me', 'UserController@me')->name('perfil');
+    Route::put('users/me/{id}', 'AttributesController@update')->name('perfil.update');
+
     Route::group(['prefix' => 'index', 'as' => 'dashboard.'], function(){
         Route::get('/', 'PainelController@index')->name('index');
         Route::get('support', 'SuportController@index')->name('support.index');
-        Route::get('divulgation', 'DivulgationController@index')->name('divulgation.index');
+        Route::get('divulgation', 'DivulgationController@divulgations')->name('divulgation.index');
+        Route::get('divulgation/download/{id}', 'DivulgationController@download')->name('divulgation.download');
         Route::get('trainings', 'PostController@trainings')->name('trainings.index');
         Route::get('information', 'PostController@information')->name('information.index');
     });
@@ -21,6 +29,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         Route::resource('units', 'UnitController');
         Route::resource('templates', 'TemplateController');
         Route::resource('layouts', 'layoutCampaignController');
+        Route::resource('divulgation', 'DivulgationController');
+        Route::resource('posts', 'PostController');
+        Route::resource('message', 'MessageController');
     });
 
     //Rotas de Marketing
@@ -37,3 +48,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::post('/{url}/{id}')->name('deleteCrud');
     Route::get('/{url}/{id}/edit')->name('editCrud');
 });
+
+Route::get('/sendEmail', 'RegisterUserController@sendEmail');
+Route::get('/{slug}', 'CampaignController@view')->name('campaigns.view');

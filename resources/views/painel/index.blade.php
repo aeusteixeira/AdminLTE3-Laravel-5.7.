@@ -5,45 +5,43 @@
     <div class="col-sm-12 col-lg-3">
         <div class="small-box bg-primary">
             <div class="inner">
-            <h3>150</h3>
-
+            <h3>{{ $divulgation }}</h3>
             <p>Divulgação</p>
             </div>
             <div class="icon">
                 <i class="fas fa-bullhorn"></i>
             </div>
-            <a href="" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
+            <a href="{{ route('dashboard.divulgation.index') }}" class="small-box-footer">
+                Acessar <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
     </div>
     <div class="col-sm-12 col-lg-3">
         <div class="small-box bg-success">
             <div class="inner">
-            <h3>150</h3>
-
+            <h3>{{ $trainings }}</h3>
             <p>Treinamentos</p>
             </div>
             <div class="icon">
                 <i class="fas fa-users"></i>
             </div>
-            <a href="#" class="small-box-footer">
-            More info <i class="fas fa-arrow-circle-right"></i>
+            <a href="{{ route('dashboard.trainings.index') }}" class="small-box-footer">
+            Acessar <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
     </div>
     <div class="col-sm-12 col-lg-3">
         <div class="small-box bg-warning">
             <div class="inner">
-            <h3>150</h3>
+            <h3>{{ $information }}</h3>
 
             <p>Informações</p>
             </div>
             <div class="icon">
                 <i class="fas fa-info"></i>
             </div>
-            <a href="#" class="small-box-footer">
-            More info <i class="fas fa-arrow-circle-right"></i>
+            <a href="{{ route('dashboard.trainings.index') }}" class="small-box-footer">
+            Acessar <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
     </div>
@@ -58,7 +56,7 @@
                 <i class="fas fa-headset"></i>
             </div>
             <a href="#" class="small-box-footer">
-            More info <i class="fas fa-arrow-circle-right"></i>
+            Acessar <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
     </div>
@@ -77,7 +75,8 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus qui earum impedit doloremque consequuntur ullam! Rem rerum distinctio aspernatur quisquam autem, repellat excepturi suscipit voluptatem, numquam architecto nisi odio, tenetur nulla quos? Sed aliquam, omnis velit, eos ab dolor esse distinctio quo aspernatur nostrum quisquam error laboriosam nam eligendi. Sequi mollitia assumenda minima temporibus numquam modi quos error, sit dignissimos non nulla perspiciatis consectetur odit culpa perferendis odio voluptates ut nemo voluptatibus saepe ad quibusdam facilis itaque. Tempore magnam quos soluta sapiente doloremque nihil magni, laborum, ducimus voluptatum fugit quo animi cupiditate optio aspernatur minima aliquid possimus consectetur placeat reiciendis ratione dicta odio.
+            <h4 class="text-center">{{ $message->title }}</h4>
+            {!! $message->description !!}
             </div>
             <!-- /.card-body -->
         </div>

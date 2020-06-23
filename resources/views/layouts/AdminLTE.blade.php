@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{{ config('app.name', 'Laravel') }} | Dashboard</title>
+  <title>{{ config('app.name', 'Laravel') }} | {{$title}} </title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/summernote/summernote-bs4.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  @yield('link')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -37,16 +38,16 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      <li class="nav-item d-none ">
         <a href="index3.html" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      <li class="nav-item d-none">
         <a href="#" class="nav-link">Contact</a>
       </li>
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    <form class="form-inline ml-3 d-none">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
@@ -61,21 +62,26 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ asset('icon/'.Auth::user()->thumbnail) }}" class="user-image img-circle elevation-2" alt="User Image">
+                <img class="user-image img-circle elevation-2"
+                src="{{
+                    Auth::user()->attribute['photo'] == null ? asset('icon/'.Auth::user()->thumbnail) : Storage::url(Auth::user()->attribute['photo']) }}"
+                     alt="User profile picture">
               <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
               <!-- User image -->
               <li class="user-header bg-dark">
-                <img src="{{ asset('icon/'.Auth::user()->thumbnail) }}" class="img-circle elevation-2" alt="User Image">
-
+                <img class="profile-user-img img-fluid img-circle"
+                src="{{
+                    Auth::user()->attribute['photo'] == null ? asset('icon/'.Auth::user()->thumbnail) : Storage::url(Auth::user()->attribute['photo']) }}"
+                     alt="User profile picture">
                 <p>
                   {{ Auth::user()->name }} - {{ Auth::user()->level['name'] }}
                   <small>Membro desde: {{ Auth::user()->CreatedFm }}</small>
                 </p>
               </li>
               <!-- Menu Body -->
-              <li class="user-body">
+              <li class="user-body d-none">
                 <div class="row">
                   <div class="col-4 text-center">
                     <a href="#">Followers</a>
@@ -91,7 +97,7 @@
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                <a href="{{ route('perfil') }}" class="btn btn-default btn-flat">Perfil</a>
                 <a href="#" class="btn btn-default btn-flat float-right">Sair</a>
               </li>
             </ul>
@@ -348,8 +354,64 @@
                       </li>
                     </ul>
                   </li>
-                  <!-- Layouts -->
+                  <!-- Divulgações -->
                   <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                    <i class="fas fa-mail-bulk nav-icon"></i>
+                      <p>
+                        Divulgações
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{{ route('admin.divulgation.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.divulgation.index' ? 'active' : '' }}">
+                          <i class="fas fa-plus  nav-icon"></i>
+                          <p>Criar divulgação</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{ route('admin.divulgation.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.divulgation.index' ? 'active' : '' }}">
+                          <i class="fas fa-list nav-icon"></i>
+                          <p>Visualizar divulgações</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <!-- Posts -->
+                  <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                    <i class="fas fa-pen-fancy nav-icon"></i>
+                      <p>
+                        Posts
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{{ route('admin.posts.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.posts.index' ? 'active' : '' }}">
+                          <i class="fas fa-plus  nav-icon"></i>
+                          <p>Criar post</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{ route('admin.posts.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.posts.index' ? 'active' : '' }}">
+                          <i class="fas fa-list nav-icon"></i>
+                          <p>Visualizar posts</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{ route('admin.message.update', ['id' => 1]) }}" class="nav-link">
+                              <i class="nav-icon fas fa-sticky-note mr-2"></i>
+                            <p>
+                              Recados
+                            </p>
+                          </a>
+                        </li>
+                    </ul>
+                  </li>
+                  <!-- Layouts -->
+                  <li class="nav-item has-treeview d-none">
                     <a href="#" class="nav-link">
                     <i class="fas fa-folder nav-icon"></i>
                       <p>
@@ -381,7 +443,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+          <a href="{{ route('perfil') }}" class="nav-link">
                 <i class="nav-icon fas fa-user-alt mr-2"></i>
               <p>
                 Meu perfil

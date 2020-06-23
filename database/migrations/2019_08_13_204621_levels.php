@@ -16,6 +16,13 @@ class Levels extends Migration
         Schema::create('levels', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+
+            // Sector
+            $table->enum('marketing', [0, 1])->nullable();
+            $table->enum('sales', [0, 1])->nullable();
+            $table->enum('administrative', [0, 1])->nullable();
+            $table->enum('units', [0, 1])->nullable();
+
             $table->text('description')->nullable();
 
             // User

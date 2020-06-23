@@ -57,13 +57,14 @@
                         <div class="col-sm-4 invoice-col">
                             <strong>Compartilhar a campanha:</strong><br>
                             <div class="btn-group">
-                                <a href="https://api.whatsapp.com/send?text=[CONTEÚDO]" target="_blank" class="btn btn-success"><i class="fab fa-whatsapp"></i></a>
-                                <button class="btn btn-primary">
+                                <a href="https://api.whatsapp.com/send?text={{ route('campaigns.view', ['url' => $campaign->slug]) }}" target="_blank" class="btn btn-success"><i class="fab fa-whatsapp"></i></a>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('campaigns.view', ['url' => $campaign->slug]) }}" target="_blank" class="btn btn-primary">
                                     <i class="fab fa-facebook-f"></i>
-                                </button>
-                                <button class="btn btn-info"><i class="fab fa-twitter"></i></button>
-                                <button class="btn btn-default"><i class="far fa-copy"></i> Copiar endereço</button>
+                                </a>
+                                <a href="https://twitter.com/home?status={{ route('campaigns.view', ['url' => $campaign->slug]) }}" target="_blank" class="btn btn-info"><i class="fab fa-twitter"></i></a>
+                                <button class="btn btn-default" id="copy"><i class="far fa-copy"></i> Copiar endereço</button>
                             </div>
+
                         </div>
                       </div>
                 </div>
@@ -86,9 +87,13 @@
                           </div>
                     </div>
 
-                    <button type="button" class="btn btn-primary">
+                <a href="{{ route('campaigns.view', ['url' => $campaign->slug]) }}" type="button" class="btn btn-info">
+                        <i class="fas fa-eye"></i> Visualizar
+                    </a>
+
+                    <a href="{{ route('mkt.campaigns.edit', ['id' => $campaign->id]) }}" class="btn btn-primary">
                         <i class="fas fa-bullhorn"></i> Editar
-                    </button>
+                    </a>
 
                 </div>
             </div>
@@ -127,12 +132,13 @@
                             <td>
                             </td>
                         </tr>
-                  @endforeach
+                    @endforeach
                   </tbody>
                 </table>
               </div>
               <!-- /.col -->
               {{ $campaign->register->links() }}
+              <input type="text" class="form-control" id="url" value="{{ route('campaigns.view', ['url' => $campaign->slug]) }}">
             </div>
             <!-- /.row -->
           </div>
@@ -142,4 +148,26 @@
     </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
+@endsection
+
+@section('script')
+<script>
+$(function(){
+    // Executa o evento click no button
+    $('#copy').click(function(){
+        // Seleciona o conteúdo do input
+        $('#url').select();
+        // Copia o conteudo selecionado
+        var copiar = document.execCommand('copy');
+        // Verifica se foi copia e retona mensagem
+        if(copiar){
+            alert('Copiado');
+        }else {
+            alert('Erro ao copiar, seu navegador pode não ter suporte a essa função.');
+        }
+        // Cancela a execução do formulário
+        return false;
+    });
+});
+</script>
 @endsection

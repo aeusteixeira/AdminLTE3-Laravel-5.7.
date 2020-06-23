@@ -54,7 +54,7 @@ class CampaignController extends Controller
     public function show($id)
     {
         $campaign = Campaign::find($id);
-        $campaign->setRelation('register', $campaign->register()->paginate(10));
+        $campaign->setRelation('register', $campaign->register()->paginate(20));
 
         $title = 'Detalhes da campanha';
         //dd($campaign);
@@ -64,12 +64,13 @@ class CampaignController extends Controller
 
     public function edit($id)
     {
+        $title = 'Editar campanha';
         $units = Unit::all();
         $campaign = Campaign::find($id);
         $layouts = Layout::all();
         $templates = Template::all();
         if (isset($campaign)) {
-            return view('painel.campaigns.edit', compact('campaign', 'units', 'layouts', 'templates','questions'));
+            return view('painel.campaigns.edit', compact('campaign', 'units', 'layouts', 'templates','title'));
         } else {
             return redirect()->route('campaigns.index');
         }
@@ -79,27 +80,25 @@ class CampaignController extends Controller
     {
         $campaign = Campaign::find($id);
         if (isset($campaign)) {
-            $campaign->name = $request->input('name');
-            $campaign->information = $request->input('information');
-            $campaign->description = $request->input('description');
-            $campaign->namePublic = $request->input('namePublic');
-                $url = strtolower($request->input('namePublic'));
-                $url = str_replace(' ', '-', $url);
-                $default_message = str_replace(' ', '%20', $request->input('default_message'));
-            $campaign->url = $url;
-            $campaign->default_message = $default_message;
+            $slug = str_slug($request->input('name_public'));
+            $slug = $slug;
+            $default_whatsapp_message = str_replace(' ', '%20', $request->input('default_whatsapp_message'));
+
+            $campaign->name_private = $request->input('name_private');
+            $campaign->description_private = $request->input('description_private');
+
+            $campaign->name_public = $request->input('name_public');
+            $campaign->information_public = $request->input('information_public');
+
+            $campaign->slug = $slug;
+            $campaign->default_whatsapp_message = $default_whatsapp_message;
+            $campaign->default_email_message = $request->input('default_email_message');
             $campaign->unit_id = $request->input('unit_id');
             $campaign->layout_id = $request->input('layout_id');
             $campaign->template_id = $request->input('template_id');
-            $campaign->question_id = $request->input('question_id');
-            $campaign->img1 = $request->input('img1');
-            $campaign->img2 = $request->input('img2');
-            $campaign->img3 = $request->input('img3');
-            $campaign->img4 = $request->input('img4');
-            $campaign->img5 = $request->input('img5');
             $campaign->status = $request->input('status');
             $campaign->save();
-            return redirect()->route('campaigns.index');
+            return redirect()->route('mkt.campaigns.index');
         }else{
             return redirect()->route('units.index');
         }
@@ -110,13 +109,15 @@ class CampaignController extends Controller
         //
     }
 
-    // Esta fun��o retorna a visualiza��o de forma p�blica de uma campanha
-    public function view($url)
+    // Esta função retorna a visualização de forma pública de uma campanha
+    public function view($slug)
     {
-        $campaign = Campaign::where('url', $url)->first();
-        $layout = Layout::where('id', $campaign->layout_id)->first();
-        $template = Template::where('id', $campaign->template_id)->first();
-        return view($template->address, compact('campaign', 'layout'));
+        $campaign = Campaign::where('slug', $slug)->first();
+        $views = $campaign->views;
+        $campaign->views = $views + 1;
+        $campaign->save();
+        $units = Unit::all();
+        return view('painel.templates.public.'.$campaign->template->address, compact('campaign', 'units'));
         //return $layout->name;
     }
 

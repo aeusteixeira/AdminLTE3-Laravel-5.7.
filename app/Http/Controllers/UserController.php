@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\UsersExport;
-use App\Imports\UsersImport;
-use Maatwebsite\Excel\Facades\Excel;
-
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Unit;
 use App\Level;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    public function me()
+    {
+        $title = 'Meu perfil';
+        $user = User::find(Auth::user()->id);
+        return view('painel.users.me', compact('title', 'user'));
+    }
 
     public function index()
     {

@@ -8,7 +8,7 @@ use App\Campaign;
 use App\CampaignRegister;
 use App\Unit;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\newMailPainel;
+use App\Mail\newRegisterOnCampaign;
 use App\CommentsCampaignRegisters;
 
 class RegisterUserController extends Controller
@@ -29,8 +29,10 @@ public function store(Request $request)
 
     $register = new Register;
     $campaignRegister = new CampaignRegister;
+    $campaign = Campaign::find($request->input('campaign_id'));
 
-    if ($id = $register->where('email', $request->input('email'))->first('id')) {
+    /**/
+    if ($id = $register->where('email', $request->input('email'))->first()) {
         if($data = $campaignRegister->where('register_id', $id->id)->get()){
 
         foreach ($data as $key => $value) {
@@ -40,21 +42,23 @@ public function store(Request $request)
         }
 
         }
+
         $campaignRegister->register_id = $id->id;
         $campaignRegister->campaign_id = $request->input('campaign_id');
         $campaignRegister->save();
 
+        $register = Register::find($id->id);
+
+        Mail::send(new newRegisterOnCampaign($register, $campaign));
+
     }else{
         $register->name = $request->input('name');
         $register->email = $request->input('email');
-        $register->age = $request->input('age');
         $register->telephone = $request->input('telephone');
-        $register->telephone2 = $request->input('telephone2');
+        $register->city = $request->input('city');
+        $register->district = $request->input('district');
         $register->unit_id = $request->input('unit_id');
-        $register->status_workshop_payment = $request->input('status_workshop_payment');
-        $register->date_workshop_payment = $request->input('date_workshop_payment');
-        $register->personal_interests = $request->input('personal_interests');
-        $register->description = $request->input('description');
+        $register->slot = rand(1, 5);
 
         if($register->save()){
             $campaignRegister->register_id = $register->id;
@@ -63,19 +67,7 @@ public function store(Request $request)
         }
 
     }
-
-    Mail::send('Html.view', $data, function ($message) {
-        $message->from('john@johndoe.com', 'John Doe');
-        $message->sender('john@johndoe.com', 'John Doe');
-        $message->to('john@johndoe.com', 'John Doe');
-        $message->cc('john@johndoe.com', 'John Doe');
-        $message->bcc('john@johndoe.com', 'John Doe');
-        $message->replyTo('john@johndoe.com', 'John Doe');
-        $message->subject('Subject');
-        $message->priority(3);
-        $message->attach('pathToFile');
-    });
-
+    Mail::send(new newRegisterOnCampaign($register, $campaign));
     return redirect()->back()->with('status', 'Recebemos o seu cadastro! Em breve entraremos em contato');
 
 }
@@ -113,6 +105,12 @@ public function update(Request $request, $id)
 public function destroy($id)
 {
     //
+}
+
+public function sendEmail(){
+    $register = Register::find(1005);
+    $campaign = Campaign::find(1);
+    Mail::send(new newRegisterOnCampaign($register, $campaign));
 }
 
 }

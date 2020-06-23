@@ -18,6 +18,8 @@ class Registers extends Migration
             $table->boolean('district')->nullable();
             $table->unsignedBigInteger('unit_id')->nullable();
             $table->foreign('unit_id')->references('id')->on('units');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('slot')->default(0);
             $table->timestamps();
         });

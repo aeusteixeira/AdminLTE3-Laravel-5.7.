@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use PHPUnit\Framework\Constraint\Attribute;
 
 class User extends Authenticatable
 {
@@ -42,6 +43,21 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->belongsToMany(Register::class, 'comments_campaign_registers');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function registers()
+    {
+        return $this->hasMany(Register::class);
+    }
+
+    public function attribute()
+    {
+        return $this->hasOne(Attributes::class);
     }
 
     //public function getCreatedFmAttribute(){

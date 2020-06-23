@@ -123,9 +123,9 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="default_whatsapp_message" class="col-sm-2 col-form-label">E-mail</label>
+                                <label for="default_email_message" class="col-sm-2 col-form-label">E-mail</label>
                                 <div class="col-sm-10">
-                                    <textarea rows="5" required name="default_whatsapp_message" class="form-control" id="default_whatsapp_message"></textarea>
+                                    <textarea rows="5" required name="default_email_message" class="form-control" id="default_email_message"></textarea>
                                 </div>
                             </div>
                         </div>

@@ -15,6 +15,9 @@ class CreateDivulgationsTable extends Migration
     {
         Schema::create('divulgations', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->string('banner');
             $table->timestamps();
         });
     }

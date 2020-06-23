@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Divulgation;
+use App\Message;
+use App\Post;
 use Illuminate\Http\Request;
 
 class PainelController extends Controller
@@ -15,6 +18,10 @@ class PainelController extends Controller
     public function index()
     {
         $title = 'Dashboard';
-        return view('painel.index', compact('title'));
+        $divulgation = Divulgation::count();
+        $trainings = Post::where('type', '0')->get()->count();
+        $information = Post::where('type', '1')->get()->count();
+        $message = Message::find(1)->first();
+        return view('painel.index', compact('title', 'message', 'trainings', 'information', 'divulgation'));
     }
 }
