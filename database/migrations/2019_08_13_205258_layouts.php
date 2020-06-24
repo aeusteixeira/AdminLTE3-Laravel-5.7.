@@ -24,6 +24,7 @@ class Layouts extends Migration
             $table->boolean('unit_input')->nullable();
             $table->boolean('city_input')->nullable();
             $table->boolean('district_input')->nullable();
+            $table->boolean('courses_input')->nullable();
             $table->timestamps();
         });
     }

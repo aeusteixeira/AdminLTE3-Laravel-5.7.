@@ -40,7 +40,7 @@
             <div class="icon">
                 <i class="fas fa-info"></i>
             </div>
-            <a href="{{ route('dashboard.trainings.index') }}" class="small-box-footer">
+            <a href="{{ route('dashboard.information.index') }}" class="small-box-footer">
             Acessar <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
@@ -48,14 +48,14 @@
     <div class="col-sm-12 col-lg-3">
         <div class="small-box bg-info">
             <div class="inner">
-            <h3>150</h3>
+            <h3>8hrs/dia</h3>
 
             <p>Contato/Suporte</p>
             </div>
             <div class="icon">
                 <i class="fas fa-headset"></i>
             </div>
-            <a href="#" class="small-box-footer">
+            <a href="{{ route('dashboard.support.index') }}" class="small-box-footer">
             Acessar <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
@@ -84,7 +84,7 @@
     <div class="col-sm-12 col-lg-6">
         <div class="card card-outline card-info">
             <div class="card-header">
-            <h3 class="card-title"><i class="fas fa-headset"></i> Meus leads</h3>
+            <h3 class="card-title"><i class="fas fa-headset"></i> Cadastros</h3>
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -94,17 +94,16 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus qui earum impedit doloremque consequuntur ullam! Rem rerum distinctio aspernatur quisquam autem, repellat excepturi suscipit voluptatem, numquam architecto nisi odio, tenetur nulla quos.
-
+                Cadastros são pessoas que possuem interesse em estudar conosco. Você pode acessar a aba <b>Meus cadastros</b> para acompanhar as pessoas que você atendendo. Em campanhas você consegue encontrar novos cadastros que estão em uma determinada campanha e adicionar aos seus cadastros para começar o processo de fechamento de venda com essa pessoa. Ao adicionar um cadastro ao seu atendimento somente você tem acesso aos dados de contato dele e ele deixa de aparecer na listagem nas demais campanhas.
                 <div class="row pt-4">
                     <div class="col-sm-12 col-lg-6">
-                        <a href="#" class="info-box mb-3 bg-info">
+                    <a href="{{ route('dashboard.campaigns.index') }}" class="info-box mb-3 bg-info">
                             <span class="info-box-icon">
                                 <i class="fas fa-headset"></i>
                             </span>
 
                             <div class="info-box-content">
-                              <span class="info-box-text">Meus leads</span>
+                              <span class="info-box-text">Meus cadastros</span>
                               <span class="info-box-number">5,200</span>
                             </div>
                           </a>
@@ -112,11 +111,12 @@
                     <div class="col-sm-12 col-lg-6">
                         <a href="#" class="info-box mb-3 bg-success">
                             <span class="info-box-icon">
-                                <i class="fas fa-user-plus"></i>
+                                <i class="fas fa-bullhorn"></i>
+
                             </span>
 
                             <div class="info-box-content">
-                              <span class="info-box-text">Adicionar lead</span>
+                              <span class="info-box-text">Campanhas</span>
                             </div>
                           </a>
                     </div>

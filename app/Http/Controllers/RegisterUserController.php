@@ -10,6 +10,7 @@ use App\Unit;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\newRegisterOnCampaign;
 use App\CommentsCampaignRegisters;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterUserController extends Controller
 {
@@ -17,6 +18,11 @@ class RegisterUserController extends Controller
 public function index()
 {
     //
+}
+
+public function myLeads(){
+    $title = 'Meus leads';
+    return view('painel.users.my-leads', compact('title'));
 }
 
 public function create()

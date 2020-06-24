@@ -1,8 +1,6 @@
 <?php
 
 Route::get('/', 'PainelController@index')->name('home.index');
-
-
 Auth::routes();
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
@@ -20,6 +18,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         Route::get('divulgation/download/{id}', 'DivulgationController@download')->name('divulgation.download');
         Route::get('trainings', 'PostController@trainings')->name('trainings.index');
         Route::get('information', 'PostController@information')->name('information.index');
+        Route::get('campaigns', 'CampaignController@index')->name('campaigns.index');
+        Route::get('my-leads', 'RegisterUserController@myLeads')->name('campaigns.index');
     });
 
     //Rotas de Admin

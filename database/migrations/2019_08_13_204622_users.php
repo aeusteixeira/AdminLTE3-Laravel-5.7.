@@ -25,6 +25,7 @@ class Users extends Migration
             $table->foreign('level_id')->references('id')->on('levels');
             $table->unsignedBigInteger('unit_id')->nullable();
             $table->foreign('unit_id')->references('id')->on('units');
+            $table->integer('slot')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

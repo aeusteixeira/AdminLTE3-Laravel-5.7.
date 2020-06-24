@@ -222,6 +222,14 @@
                                     <label for="district">Bairro</label>
                                 </div>
                             @endif
+
+                            @if ($campaign->layout->courses_input == 1)
+                            <hr>
+                            <p>Cursos de interesse</p>
+                                @component('painel.templates.public.components.courses')
+
+                                @endcomponent
+                            @endif
                             @if (session('status'))
                                 <div class="alert alert-success">
                                     {{ session('status') }}

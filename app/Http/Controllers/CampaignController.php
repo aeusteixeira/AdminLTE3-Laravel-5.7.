@@ -6,6 +6,7 @@ use App\Layout;
 use App\Template;
 use App\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CampaignController extends Controller
 {
@@ -54,7 +55,16 @@ class CampaignController extends Controller
     public function show($id)
     {
         $campaign = Campaign::find($id);
-        $campaign->setRelation('register', $campaign->register()->paginate(20));
+        if(
+            Auth::user()->level->administrator == 1
+            OR
+            Auth::user()->level->marketing == 1
+            OR
+            Auth::user()->level->administrative == 1){
+            $campaign->setRelation('register', $campaign->register()->paginate(20));
+        }elseif(Auth::user()->level->sales == 1){
+            $campaign->setRelation('register', $campaign->register()->where('slot', Auth::user()->slot )->paginate(20));
+        }
 
         $title = 'Detalhes da campanha';
         //dd($campaign);

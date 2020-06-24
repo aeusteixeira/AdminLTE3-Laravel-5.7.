@@ -16,6 +16,7 @@ class Registers extends Migration
             $table->string('telephone');
             $table->boolean('city')->nullable();
             $table->boolean('district')->nullable();
+            $table->string('courses')->nullable();
             $table->unsignedBigInteger('unit_id')->nullable();
             $table->foreign('unit_id')->references('id')->on('units');
             $table->unsignedBigInteger('user_id')->nullable();

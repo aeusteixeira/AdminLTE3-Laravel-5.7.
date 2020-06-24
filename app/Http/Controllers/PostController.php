@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -18,14 +19,14 @@ class PostController extends Controller
     public function trainings()
     {
         $title = 'Treinamentos';
-        $posts =  Post::where('type', 0);
+        $posts =  Post::where('type', '0')->get();
         return view('painel.posts.posts', compact('title', 'posts'));
     }
 
     public function information()
     {
         $title = 'Informações';
-        $posts =  Post::where('type', 1);
+        $posts =  Post::where('type', '1');
         return view('painel.posts.posts', compact('title', 'posts'));
     }
 

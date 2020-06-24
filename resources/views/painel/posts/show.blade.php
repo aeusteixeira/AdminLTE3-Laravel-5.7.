@@ -18,7 +18,7 @@
             <h3 class="text-center display-4 py-3 m-0">{{ $post->title }}</h3>
             <div class="text-center">
                 <img src="{{  $post->user['thumbnail'] }}" alt="">
-                {{ $post->user['name']}} - {{ $post->created_at->format('d/m/Y') }}
+                {{ $post->user['name'] }} - {{ $post->created_at->format('d/m/Y') }}
             </div>
             <hr>
             {!! $post->description !!}

@@ -144,7 +144,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('dashboard.trainings.index') }}" class="nav-link {{ Route::currentRouteName() =='dashboard.trainings.index' ? 'active' : ''}}">
                   <i class="fas fa-users nav-icon"></i>
                   <p>Treinamentos</p>
                 </a>
