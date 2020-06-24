@@ -109,10 +109,9 @@
                           </a>
                     </div>
                     <div class="col-sm-12 col-lg-6">
-                        <a href="#" class="info-box mb-3 bg-success">
+                    <a href="{{ route('mkt.campaigns.index') }}" class="info-box mb-3 bg-success">
                             <span class="info-box-icon">
                                 <i class="fas fa-bullhorn"></i>
-
                             </span>
 
                             <div class="info-box-content">
@@ -127,7 +126,7 @@
     </div>
 
 </div>
-<div class="row">
+<div class="row d-none">
     <div class="col-sm-12 col-lg-12">
         <!-- TO DO List -->
         <div class="card">

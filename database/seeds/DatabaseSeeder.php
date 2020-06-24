@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(LayoutsTableSeed::class);
         $this->call(TemplatesTableSeed::class);
         //
-        $this->call(RegistersTableSeed::class);
-        $this->call(CampaginsTableSeed::class);
-        $this->call(CampaignRegistersTabelSeed::class);
+        //$this->call(RegistersTableSeed::class);
+        //$this->call(CampaginsTableSeed::class);
+        //$this->call(CampaignRegistersTabelSeed::class);
     }
 }

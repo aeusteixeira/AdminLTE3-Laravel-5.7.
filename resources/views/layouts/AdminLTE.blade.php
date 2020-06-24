@@ -121,108 +121,116 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Dashboard Vendas -->
-          <li class="nav-item has-treeview {{ (strpos(Request::route()->getName(), 'dashboard') === 0) ? 'menu-open ' : 'false' }}">
-          <a href="{{ route('dashboard.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-              <a href="{{ route('dashboard.index') }}" class="nav-link {{ Route::currentRouteName() == 'dashboard.index' ? 'active' : '' }}">
-                  <i class="fas fa-home nav-icon"></i>
-                  <p>Home</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('dashboard.divulgation.index') }}"
-                 class="nav-link  {{ Route::currentRouteName() == 'dashboard.divulgation.index' ? 'active' : ''}}">
-                  <i class="fas fa-bullhorn nav-icon"></i>
-                  <p>Divulgação</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('dashboard.trainings.index') }}" class="nav-link {{ Route::currentRouteName() =='dashboard.trainings.index' ? 'active' : ''}}">
-                  <i class="fas fa-users nav-icon"></i>
-                  <p>Treinamentos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-              <a href="{{ route('dashboard.information.index') }}" class="nav-link {{ Route::currentRouteName() =='dashboard.information.index' ? 'active' : ''}}">
-                  <i class="fas fa-info nav-icon"></i>
-                  <p>Informações</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('dashboard.support.index') }}" class="nav-link {{Route::currentRouteName() == 'dashboard.support.index' ? 'active' : ''}}">
-                  <i class="fas fa-headset nav-icon"></i>
-                  <p>Contato/Suporte</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <!-- Marketing -->
-          <li class="nav-item has-treeview {{ (strpos(Request::route()->getName(), 'mkt') === 0) ? 'menu-open ' : 'false' }}">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-lightbulb"></i>
-              <p>
-                Marketing
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview ">
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link">
-                      <i class="fas fa-bullhorn nav-icon"></i>
-                      <p>
-                        Campanhas
+
+          @if(Auth::user()->level->sales == 1)
+            <li class="nav-item has-treeview {{ (strpos(Request::route()->getName(), 'dashboard') === 0) ? 'menu-open ' : 'false' }}">
+                <a href="{{ route('dashboard.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Dashboard
                         <i class="right fas fa-angle-left"></i>
-                      </p>
+                    </p>
                     </a>
-                    <!-- Campanhas -->
-                    <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                      <a href="{{ route('mkt.campaigns.create') }}" class="nav-link {{ Route::currentRouteName() == 'mkt.campaigns.create' ? 'active' : '' }}">
-                          <i class="fas fa-plus  nav-icon"></i>
-                          <p>Criar campanha</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{{ route('mkt.campaigns.index') }}" class="nav-link {{ Route::currentRouteName() == 'mkt.campaigns.index' ? 'active' : '' }}">
-                          <i class="fas fa-list nav-icon"></i>
-                          <p>Visualizar campanhas</p>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <!-- E-mail marketing -->
-                  <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                    <i class="fas fa-envelope-open-text nav-icon"></i>
-                      <p>
-                        E-mail Marketing
-                        <i class="right fas fa-angle-left"></i>
-                      </p>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="{{ route('dashboard.index') }}" class="nav-link {{ Route::currentRouteName() == 'dashboard.index' ? 'active' : '' }}">
+                    <i class="fas fa-home nav-icon"></i>
+                    <p>Home</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                        <a href="{{ route('mkt.email.create') }}" class="nav-link {{ Route::currentRouteName() == 'mkt.email.create' ? 'active' : '' }}">
-                          <i class="fas fa-plus  nav-icon"></i>
-                          <p>Criar e-mail marketing</p>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('dashboard.divulgation.index') }}"
+                    class="nav-link  {{ Route::currentRouteName() == 'dashboard.divulgation.index' ? 'active' : ''}}">
+                    <i class="fas fa-bullhorn nav-icon"></i>
+                    <p>Divulgação</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('dashboard.trainings.index') }}" class="nav-link {{ Route::currentRouteName() =='dashboard.trainings.index' ? 'active' : ''}}">
+                    <i class="fas fa-users nav-icon"></i>
+                    <p>Treinamentos</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ route('dashboard.information.index') }}" class="nav-link {{ Route::currentRouteName() =='dashboard.information.index' ? 'active' : ''}}">
+                    <i class="fas fa-info nav-icon"></i>
+                    <p>Informações</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('dashboard.support.index') }}" class="nav-link {{Route::currentRouteName() == 'dashboard.support.index' ? 'active' : ''}}">
+                    <i class="fas fa-headset nav-icon"></i>
+                    <p>Contato/Suporte</p>
+                    </a>
+                </li>
+                </ul>
+            </li>
+          @endif
+
+          @if(Auth::user()->level->marketing == 1)
+            <!-- Marketing -->
+            <li class="nav-item has-treeview {{ (strpos(Request::route()->getName(), 'mkt') === 0) ? 'menu-open ' : 'false' }}">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-lightbulb"></i>
+                    <p>
+                    Marketing
+                    <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview ">
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-bullhorn nav-icon"></i>
+                            <p>
+                            Campanhas
+                            <i class="right fas fa-angle-left"></i>
+                            </p>
                         </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{{ route('mkt.email.index') }}" class="nav-link {{ Route::currentRouteName() == 'mkt.email.index' ? 'active' : '' }}">
-                          <i class="fas fa-list nav-icon"></i>
-                          <p>Visualizar e-mails</p>
+                        <!-- Campanhas -->
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                            <a href="{{ route('mkt.campaigns.create') }}" class="nav-link {{ Route::currentRouteName() == 'mkt.campaigns.create' ? 'active' : '' }}">
+                                <i class="fas fa-plus  nav-icon"></i>
+                                <p>Criar campanha</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="{{ route('mkt.campaigns.index') }}" class="nav-link {{ Route::currentRouteName() == 'mkt.campaigns.index' ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Visualizar campanhas</p>
+                            </a>
+                            </li>
+                        </ul>
+                        </li>
+                        <!-- E-mail marketing -->
+                        <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                        <i class="fas fa-envelope-open-text nav-icon"></i>
+                            <p>
+                            E-mail Marketing
+                            <i class="right fas fa-angle-left"></i>
+                            </p>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-            </ul>
-          </li>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                            <a href="{{ route('mkt.email.create') }}" class="nav-link {{ Route::currentRouteName() == 'mkt.email.create' ? 'active' : '' }}">
+                                <i class="fas fa-plus  nav-icon"></i>
+                                <p>Criar e-mail marketing</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="{{ route('mkt.email.index') }}" class="nav-link {{ Route::currentRouteName() == 'mkt.email.index' ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Visualizar e-mails</p>
+                            </a>
+                            </li>
+                        </ul>
+                        </li>
+                </ul>
+            </li>
+          @endif
+
+          @if(Auth::user()->level->administrative == 1)
           <!-- Gerenciar -->
           <li class="nav-item has-treeview {{ (strpos(Request::route()->getName(), 'admin') === 0) ? 'menu-open ' : 'false' }}">
             <a href="#" class="nav-link">
@@ -441,7 +449,9 @@
                     </ul>
                   </li>
             </ul>
-          </li>
+            </li>
+          @endif
+
           <li class="nav-item">
           <a href="{{ route('perfil') }}" class="nav-link">
                 <i class="nav-icon fas fa-user-alt mr-2"></i>

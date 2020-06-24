@@ -2,6 +2,8 @@
 
 @section('content')
 
+@if(Auth::user()->level->create_campaign == 1)
+
 @component('components.add')
     @slot('add')
         @slot('url')
@@ -12,6 +14,8 @@
         @endslot
     @endslot
 @endcomponent
+
+@endif
 
 <table class="table table-striped">
     <thead>
@@ -53,14 +57,16 @@
                         {{ $campaign->id }}
                     @endslot
                 @endslot
-                @slot('edit')
-                    @slot('url')
-                        marketing/campaigns
+                @if(Auth::user()->level->update_campaign == 1)
+                    @slot('edit')
+                        @slot('url')
+                            marketing/campaigns
+                        @endslot
+                        @slot('id')
+                            {{ $campaign->id }}
+                        @endslot
                     @endslot
-                    @slot('id')
-                        {{ $campaign->id }}
-                    @endslot
-                @endslot
+                @endif
             @endcomponent
             </td>
           </tr>

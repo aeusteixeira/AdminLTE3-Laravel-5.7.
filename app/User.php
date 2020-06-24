@@ -60,7 +60,4 @@ class User extends Authenticatable
         return $this->hasOne(Attributes::class);
     }
 
-    //public function getCreatedFmAttribute(){
-    //    return date('m/Y', strtotime($this->created_at));
-    //}
 }

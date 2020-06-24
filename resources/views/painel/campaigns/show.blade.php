@@ -68,7 +68,7 @@
                         </div>
                       </div>
                 </div>
-                <div class="card-footer">
+            <div class="card-footer {{ Auth::user()->level->marketing == 1 ? '' : 'd-none'}}">
                     <button target="_blank" class="btn btn-default float-right">
                         <i class="fas fa-print"></i> Imprimir
                     </button>

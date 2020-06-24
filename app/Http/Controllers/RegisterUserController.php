@@ -64,6 +64,7 @@ public function store(Request $request)
         $register->city = $request->input('city');
         $register->district = $request->input('district');
         $register->unit_id = $request->input('unit_id');
+        $register->courses = implode(", ", $request->input('course'));
         $register->slot = rand(1, 5);
 
         if($register->save()){

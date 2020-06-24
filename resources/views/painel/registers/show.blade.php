@@ -20,7 +20,7 @@
                   <div class="col-12">
                     <h4>FollowUps</h4>
                     <form action="{{ route('mkt.comment') }}" method="post">
-                        @csrf
+                    @csrf
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                     <input type="hidden" name="register_id" value="{{ $register->id }}">
                         <div class="form-group">
@@ -51,25 +51,32 @@
                   </div>
                 </div>
             </div>
+
             <div class="col-12 col-md-12 col-lg-5">
                 <h3 class="text-primary">{{ $register->name }}</h3>
-                <div class="text-muted">
-                  <p class="text-sm">E-mail
-                    <b class="d-block">{{ $register->email }}</b>
-                  </p>
-                  <p class="text-sm">Telefone
-                    <b class="d-block">{{ $register->telephone }}</b>
-                  </p>
-                  <p class="text-sm">Cidade
-                    <b class="d-block">{{ $register->city }}</b>
-                  </p>
-                  <p class="text-sm">Bairro
-                    <b class="d-block">{{ $register->district }}</b>
-                  </p>
-                  <p class="text-sm">Unidade
-                    <b class="d-block">{{ $register->unit['name'] }}</b>
-                  </p>
-                </div>
+                @if ($register->user_id == null OR $register->user_id == Auth::user()->id)
+                    <div class="text-muted">
+                        <p class="text-sm">E-mail
+                        <b class="d-block">{{ $register->email }}</b>
+                        </p>
+                        <p class="text-sm">Telefone
+                        <b class="d-block">{{ $register->telephone }}</b>
+                        </p>
+                        <p class="text-sm">Cidade
+                        <b class="d-block">{{ $register->city }}</b>
+                        </p>
+                        <p class="text-sm">Bairro
+                        <b class="d-block">{{ $register->district }}</b>
+                        </p>
+                        <p class="text-sm">Unidade
+                        <b class="d-block">{{ $register->unit['name'] }}</b>
+                        </p>
+                        <p class="text-sm">Possui o interesse em:
+                        <b class="d-block">{{ $register->courses }}</b>
+                        </p>
+                    </div>
+                @endif
+
                 <div class="card">
                     <div class="card-header">
                         <i class="fas fa-list"></i> Inscrito nas campanhas
