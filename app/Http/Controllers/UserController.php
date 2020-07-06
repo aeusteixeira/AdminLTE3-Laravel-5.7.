@@ -37,7 +37,17 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = new User();
-        $user->create($request->except(['_token']));
+        $user->name = $request->input('name');
+        $user->telephone = $request->input('telephone');
+        $user->CPF = $request->input('CPF');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+        $user->unit_id = $request->input('unit_id');
+        $user->level_id = $request->input('level_id');
+        $user->slot = rand(1, 5);
+        $user->save();
+
+        //$user->create($request->except(['_token']));
         return redirect()->route('admin.users.index');
     }
 
@@ -64,17 +74,18 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if(isset($user)){
-            /*
+
             $user->name = $request->input('name');
-            $user->email = $request->input('email');
             $user->telephone = $request->input('telephone');
             $user->CPF = $request->input('CPF');
+            $user->email = $request->input('email');
             $user->password = Hash::make($request->input('password'));
             $user->unit_id = $request->input('unit_id');
             $user->level_id = $request->input('level_id');
+            $user->slot = rand(1, 5);
             $user->save();
-            */
-            $user->update($request->except(['_token']));
+
+            //$user->update($request->except(['_token']));
             return redirect()->route('admin.users.index');
         }else{
             return redirect()->route('admin.users.index');

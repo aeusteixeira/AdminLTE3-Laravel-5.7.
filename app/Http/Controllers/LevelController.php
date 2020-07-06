@@ -15,7 +15,7 @@ class LevelController extends Controller
     {
         $title = 'Níveis de acesso';
         $levels = Level::simplePaginate(15);
-        return view('painel.admin.levels.index', compact('levels', 'title'));
+        return view('painel.levels.index', compact('levels', 'title'));
     }
 
     /**
@@ -26,7 +26,7 @@ class LevelController extends Controller
     public function create()
     {
         $title = 'Criar nível';
-        return view('painel.admin.levels.create', compact('title'));
+        return view('painel.levels.create', compact('title'));
     }
 
     /**
@@ -96,6 +96,13 @@ class LevelController extends Controller
             }else{
                 $level->name = $request->input('name');
                 $level->description = $request->input('description');
+
+                // User
+                $level->marketing = $request->input('marketing');
+                $level->sales = $request->input('sales');
+                $level->sales_manager = $request->input('sales_manager');
+                $level->administrative = $request->input('administrative');
+                $level->units = $request->input('units');
 
                 // User
                 $level->create_user = $request->input('create_user');

@@ -35,6 +35,7 @@ class layoutCampaignController extends Controller
         $layout->telephone_input = $request->input('telephone_input');
         $layout->unit_input = $request->input('unit_input');
         $layout->city_input = $request->input('city_input');
+        $layout->courses_input = $request->input('courses_input');
         $layout->district_input = $request->input('district_input');
 
         $layout->save();
@@ -69,6 +70,7 @@ class layoutCampaignController extends Controller
             $layout->telephone_input = $request->input('telephone_input');
             $layout->unit_input = $request->input('unit_input');
             $layout->city_input = $request->input('city_input');
+            $layout->courses_input = $request->input('courses_input');
             $layout->district_input = $request->input('district_input');
             $layout->save();
             return redirect()->route('admin.layouts.index');

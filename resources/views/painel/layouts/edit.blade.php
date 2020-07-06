@@ -60,6 +60,12 @@
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                <input type="checkbox" value="1" name="courses_input" class="custom-control-input" id="courses_input" {{ $layout->courses_input == 1 ? 'checked' : ''}}>
+                                <label class="custom-control-label" for="courses_input" >Cursos</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                 <input type="checkbox" value="1" name="city_input" class="custom-control-input" id="city_input"
                                 {{ $layout->city_input == 1 ? 'checked' : ''}}>
                                 <label class="custom-control-label" for="city_input" >Cidade</label>
@@ -104,6 +110,15 @@
                                                             <option value="">Unidade de Nova Iguaçu</option>
                                                             <option value="">Unidade de Santa Cruz</option>
                                                             <option value="">Unidade de Vitória</option>
+                                                            <option value="">...</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group d-none" id="for_courses_input">
+                                                        <label for="courses_input" class="text-secondary">Curso</label>
+                                                        <select id="courses_input" class="form-control form-control-sm">
+                                                            <option value="">Curso de Aux. Administrativo</option>
+                                                            <option value="">Curso de Aux. Logistica</option>
+                                                            <option value="">Curso de Assistente. de DP</option>
                                                             <option value="">...</option>
                                                         </select>
                                                     </div>
@@ -182,6 +197,17 @@ $('#unit_input').change(function() {
         }
     if (!$(this).is(':checked')) {
             $('#for_unit_input').addClass('d-none');
+        }
+});
+
+$('#courses_input').change(function() {
+    if ($(this).is(':checked')) {
+            $('#for_courses_input').fadeOut(1000, function(){
+                $('#for_courses_input').removeClass("d-none")
+            });
+        }
+    if (!$(this).is(':checked')) {
+            $('#for_courses_input').addClass('d-none');
         }
 });
 

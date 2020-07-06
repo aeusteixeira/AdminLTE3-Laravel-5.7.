@@ -34,6 +34,45 @@
             <h3 class="card-title">Configurações</h3>
         </div>
             <div class="card-body">
+                <!--Setor-->
+                <div class="card card-outline card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">Setor</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox" value="1" name="marketing" class="custom-control-input" id="marketing" {{ $level->marketing == 1 ? 'checked' : '' }} >
+                            <label class="custom-control-label" for="marketing">Marketing</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox" value="1" name="administrative" class="custom-control-input" id="administrative" {{ $level->administrative == 1 ? 'checked' : '' }} >
+                            <label class="custom-control-label" for="administrative">Administrativo</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox" value="1" name="units" class="custom-control-input" id="units" {{ $level->units == 1 ? 'checked' : '' }} >
+                            <label class="custom-control-label" for="units">Unidade</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox" value="1" name="sales" class="custom-control-input" id="sales" {{ $level->sales == 1 ? 'checked' : '' }} >
+                            <label class="custom-control-label" for="sales">Vendas</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox" value="1" name="sales_manager" class="custom-control-input" id="sales_manager" {{ $level->sales_manager == 1 ? 'checked' : '' }}>
+                            <label class="custom-control-label" for="sales_manager">Gerente de vendas</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!--Usuário-->
                 <div class="card card-outline card-success">
                     <div class="card-header">
@@ -42,7 +81,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                            <input type="checkbox" {{ $level->create_user == 1 ? 'checked' : '' }} {{ $level->create_user == 1 ? 'checked' : '' }} value="1" name="create_user" class="custom-control-input" id="create_user"
+                            <input type="checkbox" {{ $level->create_user == 1 ? 'checked' : '' }} value="1" name="create_user" class="custom-control-input" id="create_user"
                             >
                             <label class="custom-control-label" for="create_user">Criar usuário</label>
                             </div>

@@ -10,6 +10,13 @@ class Level extends Model
         'name',
         'description',
 
+        // Sector
+        'marketing',
+        'sales',
+        'sales_manager',
+        'administrative',
+        'units',
+
         // User
         'create_user',
         'update_user',
@@ -68,6 +75,13 @@ class Level extends Model
 
     public function setAdministratorAttribute($value){
         $this->attributes['administrator'] = $value;
+
+        // Sector
+        $this->attributes['marketing'] = $value;
+        $this->attributes['sales'] = $value;
+        $this->attributes['sales_manager'] = $value;
+        $this->attributes['administrative'] = $value;
+        $this->attributes['units'] = $value;
 
         // User
         $this->attributes['create_user'] = $value;

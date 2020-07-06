@@ -42,7 +42,7 @@ class User extends Authenticatable
 
     public function comments()
     {
-        return $this->belongsToMany(Register::class, 'comments_campaign_registers');
+        return $this->belongsToMany(Register::class, 'comments_campaign_registers')->withPivot('description', 'created_at')->orderBy('comments_campaign_registers.created_at', 'DESC');
     }
 
     public function posts()

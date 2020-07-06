@@ -60,7 +60,16 @@
                         <b class="d-block">{{ $register->email }}</b>
                         </p>
                         <p class="text-sm">Telefone
-                        <b class="d-block">{{ $register->telephone }}</b>
+                        <b class="d-block">{{ $register->telephone }} @component('components.crud')
+                            @slot('wpp')
+                            @slot('number')
+                              {{ $register->telephone }}
+                            @endslot
+                            @slot('msg')
+                              Olá, {{ $register->name }}. Tudo bem?
+                            @endslot
+                        @endslot
+                        @endcomponent</b>
                         </p>
                         <p class="text-sm">Cidade
                         <b class="d-block">{{ $register->city }}</b>

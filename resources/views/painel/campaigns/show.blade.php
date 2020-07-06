@@ -97,6 +97,16 @@
 
                 </div>
             </div>
+            <div class="form-group">
+            <form class="form-inline my-2 my-lg-0" method="POST" action="{{ route('mkt.search.register', ['id' => $campaign->id]) }}">
+                @csrf
+                    <input class="form-control col-sm-12 col-lg-11 mr-sm-2" name="search" type="search" placeholder="Buscar por nome ou número" aria-label="Pesquisar">
+                    <button class="btn btn-success my-2 my-sm-0" type="submit">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+
             <!-- /.row -->
 
             <!-- Table row -->
@@ -119,12 +129,20 @@
                             <td>{{ $register->telephone }}</td>
                             <td>
                                 @component('components.crud')
-                                @slot('view')
-                                    @slot('url')
-                                        marketing/registers
+                                    @slot('view')
+                                        @slot('url')
+                                            marketing/registers
+                                        @endslot
+                                        @slot('id')
+                                            {{ $register->id }}
+                                        @endslot
                                     @endslot
-                                    @slot('id')
-                                        {{ $register->id }}
+                                @slot('wpp')
+                                    @slot('number')
+                                      {{ $register->telephone }}
+                                    @endslot
+                                    @slot('msg')
+                                        {{ $campaign->default_whatsapp_message }}
                                     @endslot
                                 @endslot
                                 @endcomponent

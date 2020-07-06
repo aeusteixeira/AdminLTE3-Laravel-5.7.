@@ -50,22 +50,12 @@
                 @endslot
                 @slot('edit')
                     @slot('url')
-                        users
+                        admin/users
                     @endslot
                     @slot('id')
                         {{ $user->id }}
                     @endslot
                 @endslot
-                @if($user->id !== Auth::user()->id)
-                    @slot('delete')
-                        @slot('url')
-                            admin/users
-                        @endslot
-                        @slot('id')
-                            {{ $user->id }}
-                        @endslot
-                    @endslot
-                @endif
             @endcomponent
             </td>
           </tr>

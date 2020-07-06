@@ -94,17 +94,15 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                Cadastros são pessoas que possuem interesse em estudar conosco. Você pode acessar a aba <b>Meus cadastros</b> para acompanhar as pessoas que você atendendo. Em campanhas você consegue encontrar novos cadastros que estão em uma determinada campanha e adicionar aos seus cadastros para começar o processo de fechamento de venda com essa pessoa. Ao adicionar um cadastro ao seu atendimento somente você tem acesso aos dados de contato dele e ele deixa de aparecer na listagem nas demais campanhas.
+                Cadastros são pessoas que possuem interesse em estudar conosco. Você pode acessar a aba <b>Meus atendimentos</b> para acompanhar as pessoas que você atendendo. Em campanhas você consegue encontrar novos cadastros que estão em uma determinada campanha e adicionar aos seus cadastros para começar o processo de fechamento de venda com essa pessoa. Ao adicionar um cadastro ao seu atendimento somente você tem acesso aos dados de contato dele e ele deixa de aparecer na listagem nas demais campanhas.
                 <div class="row pt-4">
                     <div class="col-sm-12 col-lg-6">
-                    <a href="{{ route('dashboard.campaigns.index') }}" class="info-box mb-3 bg-info">
+                    <a href="{{ route('dashboard.mycalls.index') }}" class="info-box mb-3 bg-info">
                             <span class="info-box-icon">
                                 <i class="fas fa-headset"></i>
                             </span>
-
                             <div class="info-box-content">
-                              <span class="info-box-text">Meus cadastros</span>
-                              <span class="info-box-number">5,200</span>
+                              <span class="info-box-text">Meus atendimentos</span>
                             </div>
                           </a>
                     </div>
@@ -260,6 +258,32 @@
     </div>
     </div>
 </div>
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Atualização - 1.1 - 06/07/2020</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>- Adicionado barra de pesquisa nos registros das campanhas.</p>
+            <p>- Feita a correção de alguns links internos para a criação de níveis, unidades, templates e layouts.</p>
+            <p>- Feita a captura dos cursos selecionados pelos usuários na página de captura.</p>
+            <p>- Adicionada a opção de redirecionamento para outra página da web após a captura dos dados.</p>
+            <p>- Adicionada um chat direto com o suporte.</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Ok, entendi</button>
+        </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 @endsection
 
 @section('script')
@@ -270,6 +294,10 @@
         delay: 5000,
         class: 'bg-success',
   });
+
+  $(document).ready(function() {
+    $('#modal-default').modal('show');
+})
 
 </script>
 @endsection

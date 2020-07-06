@@ -20,7 +20,7 @@ public function index()
     //
 }
 
-public function myLeads(){
+public function myCalls(){
     $title = 'Meus leads';
     return view('painel.users.my-leads', compact('title'));
 }
@@ -64,7 +64,7 @@ public function store(Request $request)
         $register->city = $request->input('city');
         $register->district = $request->input('district');
         $register->unit_id = $request->input('unit_id');
-        $register->courses = implode(", ", $request->input('course'));
+        $register->courses = implode(', ', $request->input('course'));
         $register->slot = rand(1, 5);
 
         if($register->save()){
@@ -74,7 +74,13 @@ public function store(Request $request)
         }
 
     }
+
     Mail::send(new newRegisterOnCampaign($register, $campaign));
+
+    if($campaign->redirect == 1){
+        return redirect($campaign->redirectTo);
+    }
+
     return redirect()->back()->with('status', 'Recebemos o seu cadastro! Em breve entraremos em contato');
 
 }

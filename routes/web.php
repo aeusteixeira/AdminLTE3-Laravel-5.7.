@@ -4,6 +4,8 @@ Route::get('/', 'PainelController@index')->name('home.index');
 Auth::routes();
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
+Route::get('logout', 'Auth\LoginController@logout')->name('exit');
+
     Route::get('/', function(){
         return redirect()->route('dashboard.index');
     });
@@ -11,6 +13,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::get('users/me', 'UserController@me')->name('perfil');
     Route::put('users/me/{id}', 'AttributesController@update')->name('perfil.update');
 
+    // Rotas de Vendas
     Route::group(['prefix' => 'index', 'as' => 'dashboard.'], function(){
         Route::get('/', 'PainelController@index')->name('index');
         Route::get('support', 'SuportController@index')->name('support.index');
@@ -19,7 +22,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         Route::get('trainings', 'PostController@trainings')->name('trainings.index');
         Route::get('information', 'PostController@information')->name('information.index');
         Route::get('campaigns', 'CampaignController@index')->name('campaigns.index');
-        Route::get('my-leads', 'RegisterUserController@myLeads')->name('campaigns.index');
+        Route::get('my-leads', 'RegisterUserController@myCalls')->name('mycalls.index');
+        Route::get('accompaniment', 'AccompanimentController@index')->name('accompaniment.index');
     });
 
     //Rotas de Admin
@@ -40,6 +44,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         Route::resource('email', 'EmailController');
         Route::resource('registers', 'RegisterUserController');
         Route::post('registers/comment', 'CommentsCampaignRegistersController@store')->name('comment');
+        Route::post('campaigns/{id}', 'CampaignController@search')->name('search.register');
     });
 
     //Rotas de CRUD

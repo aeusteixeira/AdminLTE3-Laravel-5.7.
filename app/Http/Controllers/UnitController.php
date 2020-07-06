@@ -12,7 +12,7 @@ class UnitController extends Controller
     {
         $units = Unit::all();
         $title = 'Unidades';
-        return view('painel.units.index', compact('admin.units', 'title'));
+        return view('painel.units.index', compact('units', 'title'));
     }
 
     public function create()
@@ -27,7 +27,7 @@ class UnitController extends Controller
         $unit->name = $request->input('name');
         $unit->description = $request->input('description');
         $unit->save();
-        return redirect()->route('admin.units.index');
+        return redirect()->route('units.index');
     }
 
     public function show($id)

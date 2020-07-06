@@ -20,6 +20,7 @@ class Levels extends Migration
             // Sector
             $table->enum('marketing', [0, 1])->nullable();
             $table->enum('sales', [0, 1])->nullable();
+            $table->enum('sales_manager', [0, 1])->nullable();
             $table->enum('administrative', [0, 1])->nullable();
             $table->enum('units', [0, 1])->nullable();
 

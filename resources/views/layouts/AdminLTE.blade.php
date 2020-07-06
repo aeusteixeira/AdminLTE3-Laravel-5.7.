@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/summernote/summernote-bs4.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   @yield('link')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -65,10 +66,10 @@
                 <img class="user-image img-circle elevation-2"
                 src="{{
                     Auth::user()->attribute['photo'] == null ? asset('icon/'.Auth::user()->thumbnail) : Storage::url(Auth::user()->attribute['photo']) }}"
-                     alt="User profile picture">
-              <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                     alt="{{ Auth::user()->name }}">
+              <span class=" d-md-inline">{{ Auth::user()->name }}</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right ">
               <!-- User image -->
               <li class="user-header bg-dark">
                 <img class="profile-user-img img-fluid img-circle"
@@ -98,7 +99,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <a href="{{ route('perfil') }}" class="btn btn-default btn-flat">Perfil</a>
-                <a href="#" class="btn btn-default btn-flat float-right">Sair</a>
+              <a href="{{ route('exit') }}" class="btn btn-default btn-flat float-right">Sair</a>
               </li>
             </ul>
           </li>
@@ -109,7 +110,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="/" class="brand-link">
       <img src="{{ asset('AdminLTE/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">{{ config('app.name', 'Laravel') }}</span>
@@ -122,7 +123,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Dashboard Vendas -->
 
-          @if(Auth::user()->level->sales == 1)
+          @if(Auth::user()->level->sales == 1 OR Auth::user()->level->sales_manager == 1)
             <li class="nav-item has-treeview {{ (strpos(Request::route()->getName(), 'dashboard') === 0) ? 'menu-open ' : 'false' }}">
                 <a href="{{ route('dashboard.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -137,6 +138,18 @@
                     <i class="fas fa-home nav-icon"></i>
                     <p>Home</p>
                     </a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ route('dashboard.campaigns.index') }}" class="nav-link {{ Route::currentRouteName() == 'dashboard.campaigns.index' ? 'active' : '' }}">
+                    <i class="fas fa-globe-americas nav-icon"></i>
+                    <p>Campanhas</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ route('dashboard.mycalls.index') }}" class="nav-link {{ Route::currentRouteName() == 'dashboard.mycalls.index' ? 'active' : '' }}">
+                    <i class="fas fa-headset nav-icon"></i>
+                    <p>Meus atendimentos</p>
+                </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('dashboard.divulgation.index') }}"
@@ -155,8 +168,18 @@
                 <a href="{{ route('dashboard.information.index') }}" class="nav-link {{ Route::currentRouteName() =='dashboard.information.index' ? 'active' : ''}}">
                     <i class="fas fa-info nav-icon"></i>
                     <p>Informações</p>
+                </a>
+                </li>
+
+                @if (Auth::user()->level->sales_manager == 1)
+                <li class="nav-item">
+                    <a href="{{ route('dashboard.accompaniment.index') }}" class="nav-link {{ Route::currentRouteName() == 'dashboard.accompaniment.index' ? 'active' : '' }}">
+                        <i class="fas fa-satellite nav-icon"></i>
+                        <p>Acompanhamento</p>
                     </a>
                 </li>
+                @endif
+
                 <li class="nav-item">
                     <a href="{{ route('dashboard.support.index') }}" class="nav-link {{Route::currentRouteName() == 'dashboard.support.index' ? 'active' : ''}}">
                     <i class="fas fa-headset nav-icon"></i>
@@ -178,7 +201,7 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview ">
-                    <li class="nav-item has-treeview menu-open">
+                    <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="fas fa-bullhorn nav-icon"></i>
                             <p>
@@ -277,7 +300,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('admin.levels.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.levels.index' ? 'active' : '' }}">
+                        <a href="{{ route('admin.levels.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.levels.create' ? 'active' : '' }}">
                         <i class="fas fa-plus  nav-icon"></i>
                         <p>Criar nível</p>
                         </a>
@@ -301,7 +324,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="{{ route('admin.units.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.units.index' ? 'active' : '' }}">
+                        <a href="{{ route('admin.units.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.units.create' ? 'active' : '' }}">
                           <i class="fas fa-plus  nav-icon"></i>
                           <p>Criar unidade</p>
                         </a>
@@ -325,7 +348,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="{{ route('admin.templates.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.templates.index' ? 'active' : '' }}">
+                        <a href="{{ route('admin.templates.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.templates.create' ? 'active' : '' }}">
                           <i class="fas fa-plus  nav-icon"></i>
                           <p>Criar template</p>
                         </a>
@@ -349,7 +372,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="{{ route('admin.layouts.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.layouts.index' ? 'active' : '' }}">
+                        <a href="{{ route('admin.layouts.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.layouts.create' ? 'active' : '' }}">
                           <i class="fas fa-plus  nav-icon"></i>
                           <p>Criar layout</p>
                         </a>
@@ -418,6 +441,13 @@
                         </li>
                     </ul>
                   </li>
+                  <!-- Acompanhamento -->
+                  <li class="nav-item">
+                    <a href="{{ route('dashboard.accompaniment.index') }}" class="nav-link {{ Route::currentRouteName() == 'dashboard.accompaniment.index' ? 'active' : '' }}">
+                        <i class="fas fa-satellite nav-icon"></i>
+                        <p>Acompanhamento</p>
+                    </a>
+                    </li>
                   <!-- Layouts -->
                   <li class="nav-item has-treeview d-none">
                     <a href="#" class="nav-link">
@@ -453,7 +483,7 @@
           @endif
 
           <li class="nav-item">
-          <a href="{{ route('perfil') }}" class="nav-link">
+            <a href="{{ route('perfil') }}" class="nav-link d-none">
                 <i class="nav-icon fas fa-user-alt mr-2"></i>
               <p>
                 Meu perfil
@@ -461,7 +491,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('exit') }}" class="nav-link">
                 <i class="nav-icon fas fa-power-off"></i>
               <p>
                  Sair
@@ -556,6 +586,7 @@
 <script src="{{ asset('AdminLTE/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
+<script src="//code.jivosite.com/widget/yunbHHATWi" async></script>
 @yield('script')
 </body>
 </html>

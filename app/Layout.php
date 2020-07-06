@@ -11,8 +11,10 @@ class Layout extends Model
         'name_input',
         'email_input',
         'telephone_input',
+        'courses_input',
         'unit_input',
         'city_input',
         'district_input',
+        'courses_input',
     ];
 }

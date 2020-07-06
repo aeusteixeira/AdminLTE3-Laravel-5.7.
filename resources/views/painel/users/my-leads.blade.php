@@ -28,6 +28,14 @@
                               {{ $register->id }}
                           @endslot
                       @endslot
+                      @slot('wpp')
+                          @slot('number')
+                            {{ $register->telephone }}
+                          @endslot
+                          @slot('msg')
+                            Olá, {{ $register->name }}. Tudo bem?
+                          @endslot
+                      @endslot
                       @endcomponent
                   </td>
                   <td>
