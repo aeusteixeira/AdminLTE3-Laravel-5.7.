@@ -45,6 +45,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('exit');
         Route::resource('registers', 'RegisterUserController');
         Route::post('registers/comment', 'CommentsCampaignRegistersController@store')->name('comment');
         Route::post('campaigns/{id}', 'CampaignController@search')->name('search.register');
+        Route::post('campaigns/filter/{id}', 'CampaignController@filterForUnit')->name('filter.filterForUnit');
     });
 
     //Rotas de CRUD

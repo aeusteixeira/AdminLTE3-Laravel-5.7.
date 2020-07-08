@@ -101,8 +101,16 @@ class CampaignController extends Controller
                 $campaign->setRelation('register', $campaign->register()->where('unit_id', Auth::user()->unit_id )->where('telephone', 'like', '%'.$request->input('search').'%')->orderBy('created_at', 'DESC')->paginate(20));
             }
 
-
         }
+
+        $title = 'Detalhes da campanha';
+        return view('painel.campaigns.show', compact('campaign', 'title'));
+    }
+
+    public function filterForUnit($id, Request $request){
+        $campaign = Campaign::find($id);
+
+        $campaign->setRelation('register', $campaign->register()->where('unit_id', $request->input('unit_id'))->orderBy('created_at', 'DESC')->paginate(20));
 
         $title = 'Detalhes da campanha';
         return view('painel.campaigns.show', compact('campaign', 'title'));

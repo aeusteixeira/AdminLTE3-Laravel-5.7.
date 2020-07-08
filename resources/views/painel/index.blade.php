@@ -263,17 +263,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Atualização - 1.1 - 06/07/2020</h4>
+            <h4 class="modal-title">Atualização - 1.2 - 08/07/2020</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            <p>- Adicionado barra de pesquisa nos registros das campanhas.</p>
-            <p>- Feita a correção de alguns links internos para a criação de níveis, unidades, templates e layouts.</p>
-            <p>- Feita a captura dos cursos selecionados pelos usuários na página de captura.</p>
-            <p>- Adicionada a opção de redirecionamento para outra página da web após a captura dos dados.</p>
-            <p>- Adicionada um chat direto com o suporte.</p>
+            <p>- Adicionado a opção de filtrar cadastros por unidade.</p>
+            <p>- Corrigido a associação das do nome das unidades no Banco de Dados.</p>
         </div>
         <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Ok, entendi</button>

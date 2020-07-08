@@ -97,14 +97,42 @@
 
                 </div>
             </div>
-            <div class="form-group">
-            <form class="form-inline my-2 my-lg-0" method="POST" action="{{ route('mkt.search.register', ['id' => $campaign->id]) }}">
-                @csrf
-                    <input class="form-control col-sm-12 col-lg-11 mr-sm-2" name="search" type="search" placeholder="Buscar por nome ou número" aria-label="Pesquisar">
-                    <button class="btn btn-success my-2 my-sm-0" type="submit">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>
-                </form>
+            <div class="row">
+                <div class="col-sm-12 col-lg-8">
+                    <div class="form-group">
+                        <form class="form-inline my-2 my-lg-0" method="POST" action="{{ route('mkt.search.register', ['id' => $campaign->id]) }}">
+                            @csrf
+                                <input class="form-control col-sm-12 col-lg-11 mr-sm-2" name="search" type="search" placeholder="Buscar por nome ou número" aria-label="Pesquisar">
+                                <button class="btn btn-success my-2 my-sm-0" type="submit">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </div>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <form method="POST" action="{{ route('mkt.filter.filterForUnit', ['id' => $campaign->id]) }}">
+                        @csrf
+                        <div class="input-group">
+                            <select name="unit_id" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                              <option selected>Filtrar por unidade</option>
+                              <optgroup label="Rio de Janeiro">
+                                <option value="1">Nova Iguaçu</option>
+                                <option value="3">São João</option>
+                                <option value="2">Santa Cruz</option>
+                                <option value="7">Bonsucesso</option>
+                            </optgroup>
+                            <optgroup label="Espírito Santo - ES">
+                                <option value="4">Vitória</option>
+                            </optgroup>
+                            </select>
+                            <div class="input-group-append">
+                              <button type="submit" class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-filter"></i>
+                              </button>
+                            </div>
+                          </div>
+                    </form>
+                </div>
             </div>
 
             <!-- /.row -->
