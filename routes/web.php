@@ -16,7 +16,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('exit');
     // Rotas de Vendas
     Route::group(['prefix' => 'index', 'as' => 'dashboard.'], function(){
         Route::get('/', 'PainelController@index')->name('index');
-        Route::get('support', 'SuportController@index')->name('support.index');
+        Route::get('support', 'SupportController@index')->name('support.index');
         Route::get('divulgation', 'DivulgationController@divulgations')->name('divulgation.index');
         Route::get('divulgation/download/{id}', 'DivulgationController@download')->name('divulgation.download');
         Route::get('trainings', 'PostController@trainings')->name('trainings.index');
@@ -36,6 +36,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('exit');
         Route::resource('divulgation', 'DivulgationController');
         Route::resource('posts', 'PostController');
         Route::resource('message', 'MessageController');
+        Route::resource('support', 'SupportController');
     });
 
     //Rotas de Marketing

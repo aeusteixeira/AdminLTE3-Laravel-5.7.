@@ -33,6 +33,7 @@ class layoutCampaignController extends Controller
         $layout->name_input = $request->input('name_input');
         $layout->email_input = $request->input('email_input');
         $layout->telephone_input = $request->input('telephone_input');
+        $layout->age_input = $request->input('age_input');
         $layout->unit_input = $request->input('unit_input');
         $layout->city_input = $request->input('city_input');
         $layout->courses_input = $request->input('courses_input');
@@ -69,6 +70,7 @@ class layoutCampaignController extends Controller
             $layout->email_input = $request->input('email_input');
             $layout->telephone_input = $request->input('telephone_input');
             $layout->unit_input = $request->input('unit_input');
+            $layout->age_input = $request->input('age_input');
             $layout->city_input = $request->input('city_input');
             $layout->courses_input = $request->input('courses_input');
             $layout->district_input = $request->input('district_input');

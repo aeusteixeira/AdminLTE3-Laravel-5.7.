@@ -13,8 +13,10 @@ class CreateSuportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('suports', function (Blueprint $table) {
+        Schema::create('supports', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('version');
+            $table->text('content');
             $table->timestamps();
         });
     }

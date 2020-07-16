@@ -61,6 +61,23 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+        <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell fa-lg"></i>
+          <span class="badge badge-warning navbar-badge">{{ $registers->count() }}</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">{{ $registers->count() }} notificações</span>
+            @foreach ($registers as $register)
+            <div class="dropdown-divider"></div>
+                <a href="{{ route('mkt.registers.show', ['id' => $register->id]) }}" class="dropdown-item">
+                    <i class="fas fa-users mr-2"></i> {{ $register->name }} se inscreveu em uma campanha
+                </a>
+            @endforeach
+        </div>
+      </li>
+
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <img class="user-image img-circle elevation-2"

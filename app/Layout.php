@@ -11,6 +11,7 @@ class Layout extends Model
         'name_input',
         'email_input',
         'telephone_input',
+        'age_input',
         'courses_input',
         'unit_input',
         'city_input',

@@ -78,14 +78,49 @@
                     </button>
 
                     <div class="btn-group float-right" style="margin-right: 5px;">
-                        <button type="button" class="btn btn-success"><i class="fas fa-file-excel"></i> Excel</button>
-                        <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-                          <span class="sr-only">Toggle Dropdown</span>
-                          <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="#">Exportar para Excel</a>
-                            <a class="dropdown-item" href="#">Importar dados do Excel</a>
-                          </div>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#excelActions"><i class="fas fa-file-excel"></i> Excel</button>
                     </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="excelActions">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Opções do Excel</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-lg-6 border-right">
+                                            <h5>Importar</h5>
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                <p class="text-muted">Selecione um arquivo em excel</p>
+                                                <div class="form-group">
+                                                    <input type="file" class="form-control-file" name="file_excel" id="file_excel">
+                                                </div>
+                                                <button type="submit" class="btn btn-success">Importar</button>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6">
+                                            <h5>Exportar</h5>
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                <button type="submit" class="btn btn-success">Exportar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
 
                 <a href="{{ route('campaigns.view', ['url' => $campaign->slug]) }}" type="button" class="btn btn-info">
                         <i class="fas fa-eye"></i> Visualizar
@@ -109,6 +144,12 @@
                             </form>
                         </div>
                 </div>
+                @if(
+                    Auth::user()->level->administrator == 1
+                    OR
+                    Auth::user()->level->marketing == 1
+                    OR
+                    Auth::user()->level->administrative == 1)
                 <div class="col-sm-12 col-lg-4">
                     <form method="POST" action="{{ route('mkt.filter.filterForUnit', ['id' => $campaign->id]) }}">
                         @csrf
@@ -126,13 +167,14 @@
                             </optgroup>
                             </select>
                             <div class="input-group-append">
-                              <button type="submit" class="btn btn-outline-secondary" type="button">
+                              <button type="submit" class="btn btn-primary" type="button">
                                 <i class="fas fa-filter"></i>
                               </button>
                             </div>
                           </div>
                     </form>
                 </div>
+            @endif
             </div>
 
             <!-- /.row -->

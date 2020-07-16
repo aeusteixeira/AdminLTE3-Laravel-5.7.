@@ -41,6 +41,9 @@ public function store(Request $request)
     if ($id = $register->where('email', $request->input('email'))->first()) {
         if($data = $campaignRegister->where('register_id', $id->id)->get()){
 
+        $id->view = 0;
+        $id->save();
+
         foreach ($data as $key => $value) {
             if ($value->campaign_id == $request->input('campaign_id')) {
                 return redirect()->back()->with('status', 'Ops! Parece que você já se cadastrou!');
@@ -66,6 +69,7 @@ public function store(Request $request)
         $register->unit_id = $request->input('unit_id');
         $register->courses = implode(', ', $request->input('course'));
         $register->slot = rand(1, 5);
+        $register->view = 0;
 
         if($register->save()){
             $campaignRegister->register_id = $register->id;
@@ -90,6 +94,10 @@ public function store(Request $request)
 public function show($id)
 {
     $register = Register::with('campaign', 'unit', 'comments')->find($id);
+    if($register->view == 0){
+        $register->view = 1;
+        $register->save();
+    }
     //$comments = CommentsCampaignRegisters::where('register_id', $id)->get();
     $units = Unit::all();
     $title = 'Detalhes';

@@ -49,6 +49,12 @@
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                <input type="checkbox" value="1" name="age_input" class="custom-control-input" id="age_input">
+                                <label class="custom-control-label" for="age_input" >Idade</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                 <input type="checkbox" value="1" name="unit_input" class="custom-control-input" id="unit_input">
                                 <label class="custom-control-label" for="unit_input" >Unidade</label>
                                 </div>
@@ -96,6 +102,10 @@
                                                     <div class="form-group d-none" id="for_telephone_input">
                                                         <label for="telephone_input" class="text-secondary">Telefone</label>
                                                         <input type="text" id="telephone_input" class="form-control form-control-sm" placeholder="(21) 994282445">
+                                                    </div>
+                                                    <div class="form-group d-none" id="for_age_input">
+                                                        <label for="age_input" class="text-secondary">Idade</label>
+                                                        <input type="text" id="age_input" class="form-control form-control-sm" placeholder="21">
                                                     </div>
                                                     <div class="form-group d-none" id="for_unit_input">
                                                         <label for="unit_input" class="text-secondary">Unidade</label>
@@ -179,6 +189,17 @@ $('#telephone_input').change(function() {
         }
     if (!$(this).is(':checked')) {
             $('#for_telephone_input').addClass('d-none');
+        }
+});
+
+$('#age_input').change(function() {
+    if ($(this).is(':checked')) {
+            $('#for_age_input').fadeOut(1000, function(){
+                $('#for_age_input').removeClass("d-none")
+            });
+        }
+    if (!$(this).is(':checked')) {
+            $('#for_age_input').addClass('d-none');
         }
 });
 

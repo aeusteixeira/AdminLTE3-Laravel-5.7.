@@ -36,13 +36,13 @@ class HomeController extends Controller
         //$newRegisters = DB::table('registers')->where('unit_id', Auth::user()->unit_id)->count();
 
         //Quantidade de registros por unidade
-        $registersNVG = DB::table('registers')->where('unit_id', 1)->count();
-        $registersSTC = DB::table('registers')->where('unit_id', 2)->count();
-        $registersSJM = DB::table('registers')->where('unit_id', 3)->count();
-        $registersVIT = DB::table('registers')->where('unit_id', 4)->count();
+        $registersNVG = Register::where('unit_id', 1)->count();
+        $registersSTC = Register::where('unit_id', 2)->count();
+        $registersSJM = Register::where('unit_id', 3)->count();
+        $registersVIT = Register::where('unit_id', 4)->count();
 
-        return view('home', compact('registers', 'followups', 'campaign', 
-        'registersNVG', 
+        return view('home', compact('registers', 'followups', 'campaign',
+        'registersNVG',
         'registersSTC',
         'registersSJM',
         'registersVIT'));

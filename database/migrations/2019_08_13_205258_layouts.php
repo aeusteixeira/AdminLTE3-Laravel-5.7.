@@ -21,6 +21,7 @@ class Layouts extends Migration
             $table->boolean('name_input')->nullable();
             $table->boolean('email_input')->nullable();
             $table->boolean('telephone_input')->nullable();
+            $table->boolean('age_input')->nullable();
             $table->boolean('unit_input')->nullable();
             $table->boolean('city_input')->nullable();
             $table->boolean('district_input')->nullable();

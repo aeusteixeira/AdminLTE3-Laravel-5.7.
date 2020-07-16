@@ -7,7 +7,6 @@
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">Informações</h3>
-
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
             </button>
@@ -33,7 +32,6 @@
                       @foreach ($register->comments as $comment)
                       <div class="post">
                         <div class="user-block">
-
                           <img class="img-circle img-bordered-sm" src="{{ asset('icon/'.$comment->thumbnail) }}" alt="user image">
                           <span class="username">
                             <a href="#">{{ $comment->name }}</a>
@@ -41,7 +39,6 @@
                           <span class="description">
                             {{ date('d-m-y h:m', strtotime($comment->pivot->created_at)) }}</span>
                         </div>
-
                         <p>
                             {{ $comment->pivot->description }}
                         </p>

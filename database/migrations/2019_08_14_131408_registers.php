@@ -22,6 +22,7 @@ class Registers extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('slot')->default(0);
+            $table->boolean('view')->nullable();
             $table->timestamps();
         });
     }

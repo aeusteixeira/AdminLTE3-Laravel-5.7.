@@ -197,6 +197,14 @@
                                 </div>
                             @endif
 
+                            @if ($campaign->layout->age_input == 1)
+                                <div class="form-label-group">
+                                    <input type="number" id="age" name="age" class="form-control" placeholder="21"
+                                    required autofocus min="5" max="120">
+                                    <label for="age">Idade</label>
+                                </div>
+                            @endif
+
                             @if ($campaign->layout->unit_input == 1)
                                 <div class="form-label-group">
                                     <select name="unit_id" name="unit_id" id="unit_id" class="form-control rounded-pill">
