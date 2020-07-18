@@ -67,14 +67,14 @@ class CampaignController extends Controller
             Auth::user()->level->marketing == 1
             OR
             Auth::user()->level->administrative == 1){
-            $campaign->setRelation('register', $campaign->register()->orderBy('created_at', 'DESC')->paginate(20));
+
+            $campaign->setRelation('register', $campaign->register()->orderBy('id', 'DESC')->paginate(20));
         }elseif(Auth::user()->level->sales == 1 OR Auth::user()->level->sales_manager == 1){
-            $campaign->setRelation('register', $campaign->register()->where('unit_id', Auth::user()->unit_id )->orderBy('created_at', 'DESC')->paginate(20));
+            $campaign->setRelation('register', $campaign->register()->where('unit_id', Auth::user()->unit_id )->orderBy('id', 'DESC')->paginate(20));
         }
 
+
         $title = 'Detalhes da campanha';
-        //dd($campaign);
-        //$layouts = Layout::where('id', $campaign->layout_id)->get();
         return view('painel.campaigns.show', compact('campaign', 'title'));
     }
 

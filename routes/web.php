@@ -23,6 +23,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('exit');
         Route::get('information', 'PostController@information')->name('information.index');
         Route::get('campaigns', 'CampaignController@index')->name('campaigns.index');
         Route::get('my-leads', 'RegisterUserController@myCalls')->name('mycalls.index');
+        Route::get('notifications', 'RegisterUserController@notifications')->name('notifications.index');
         Route::get('accompaniment', 'AccompanimentController@index')->name('accompaniment.index');
     });
 
@@ -43,6 +44,8 @@ Route::get('logout', 'Auth\LoginController@logout')->name('exit');
     Route::group(['prefix' => 'marketing', 'as' => 'mkt.'], function(){
         Route::resource('campaigns', 'CampaignController');
         Route::resource('email', 'EmailController');
+        Route::post('registers/export', 'RegisterUserController@exportAll')->name('registers.export');
+        Route::post('registers/import', 'RegisterUserController@importAll')->name('registers.import');
         Route::resource('registers', 'RegisterUserController');
         Route::post('registers/comment', 'CommentsCampaignRegistersController@store')->name('comment');
         Route::post('campaigns/{id}', 'CampaignController@search')->name('search.register');

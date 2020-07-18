@@ -2,6 +2,11 @@
 
 @section('content')
 <section class="content">
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
@@ -93,20 +98,51 @@
                             </div>
                             <div class="modal-body">
                                 <div class="container">
-                                    <div class="row">
+                                    <div class="row align-items-end">
                                         <div class="col-sm-12 col-lg-6 border-right">
                                             <h5>Importar</h5>
-                                            <form action="" method="post" enctype="multipart/form-data">
-                                                <p class="text-muted">Selecione um arquivo em excel</p>
+                                            <form action="{{ route('mkt.registers.import')  }}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="campaign_id" value="{{ $campaign->id  }}">
                                                 <div class="form-group">
-                                                    <input type="file" class="form-control-file" name="file_excel" id="file_excel">
+                                                    <input type="file" class="form-control-file" name="file_excel" id="file_excel" accept=".xlsx, .xls, .csv">
+                                                </div>
+                                                <div class="form-group">
+                                                    <select name="unit_id" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                                        <option selected>Importar para a unidade</option>
+                                                        <optgroup label="Rio de Janeiro">
+                                                            <option value="1">Nova Iguaçu</option>
+                                                            <option value="3">São João</option>
+                                                            <option value="2">Santa Cruz</option>
+                                                            <option value="7">Bonsucesso</option>
+                                                        </optgroup>
+                                                        <optgroup label="Espírito Santo - ES">
+                                                            <option value="4">Vitória</option>
+                                                        </optgroup>
+                                                    </select>
                                                 </div>
                                                 <button type="submit" class="btn btn-success">Importar</button>
                                             </form>
                                         </div>
                                         <div class="col-sm-12 col-lg-6">
                                             <h5>Exportar</h5>
-                                            <form action="" method="post" enctype="multipart/form-data">
+                                            <form action="{{ route('mkt.registers.export')  }}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="campaign_id" value="{{ $campaign->id  }}">
+                                                <div class="form-group">
+                                                    <select name="unit_id" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                                        <option selected>Exportar por unidade</option>
+                                                        <optgroup label="Rio de Janeiro">
+                                                            <option value="1">Nova Iguaçu</option>
+                                                            <option value="3">São João</option>
+                                                            <option value="2">Santa Cruz</option>
+                                                            <option value="7">Bonsucesso</option>
+                                                        </optgroup>
+                                                        <optgroup label="Espírito Santo - ES">
+                                                            <option value="4">Vitória</option>
+                                                        </optgroup>
+                                                    </select>
+                                                </div>
                                                 <button type="submit" class="btn btn-success">Exportar</button>
                                             </form>
                                         </div>

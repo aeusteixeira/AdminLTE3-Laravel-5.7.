@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('*', function ($view)
         {
-            $registers = Register::where('view', '0')->get();
+            $registers = Register::where('view', '0')->limit(10)->get();
             $view->with('registers', $registers);
         });
 

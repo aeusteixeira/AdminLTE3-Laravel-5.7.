@@ -70,11 +70,13 @@
         <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right">
           <span class="dropdown-item dropdown-header">{{ $registers->count() }} notificações</span>
             @foreach ($registers as $register)
+            @php $name = explode(" ", $register->name, 2) @endphp
             <div class="dropdown-divider"></div>
                 <a href="{{ route('mkt.registers.show', ['id' => $register->id]) }}" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> {{ $register->name }} se inscreveu em uma campanha
+                    <i class="fas fa-users mr-2"></i> {{ $name[0] }} se inscreveu em uma campanha
                 </a>
             @endforeach
+            <a href="{{ route('dashboard.notifications.index')  }}" class="dropdown-item dropdown-header">Ver tudo</a>
         </div>
       </li>
 
@@ -95,7 +97,7 @@
                      alt="User profile picture">
                 <p>
                   {{ Auth::user()->name }} - {{ Auth::user()->level['name'] }}
-                  <small>Membro desde: {{ Auth::user()->CreatedFm }}</small>
+                  <small>Membro desde: {{ date( 'd/m/Y', strtotime(Auth::user()->created_at)) }}</small>
                 </p>
               </li>
               <!-- Menu Body -->

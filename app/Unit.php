@@ -10,4 +10,9 @@ class Unit extends Model
         'name',
         'description'
     ];
+
+    public function registers()
+    {
+        return $this->hasMany(Register::class, 'unit_id', 'id');
+    }
 }

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RegistersExport;
+use App\Imports\RegistersImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Register;
 use App\Campaign;
@@ -128,10 +131,26 @@ public function destroy($id)
     //
 }
 
-public function sendEmail(){
-    $register = Register::find(1005);
-    $campaign = Campaign::find(1);
-    Mail::send(new newRegisterOnCampaign($register, $campaign));
+public function exportAll(Request $request)
+{
+    $campaign_id = $request->input('campaign_id');
+    $unit_id = $request->input('unit_id');
+
+    return Excel::download(new RegistersExport($campaign_id, $unit_id), 'registers.xlsx');
 }
+
+public function importAll(Request $request){
+    $campaign_id = $request->input('campaign_id');
+    $unit_id = $request->input('unit_id');
+
+    $import = Excel::import(new RegistersImport($campaign_id, $unit_id), $request->file('file_excel'));
+    return redirect()->back()->with('status', 'Dados importados com sucesso.');
+}
+
+    public function notifications(){
+        $notifications = Register::where('view', '0')->paginate(10);
+        $title = $notifications->count().' notificações em cada página';
+        return view('painel.registers.notifications', compact('title', 'notifications'));
+    }
 
 }
