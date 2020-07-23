@@ -107,10 +107,10 @@ class CampaignController extends Controller
         return view('painel.campaigns.show', compact('campaign', 'title'));
     }
 
-    public function filterForUnit($id, Request $request){
-        $campaign = Campaign::find($id);
+    public function filterForUnit($campaign_id, $unit_id){
 
-        $campaign->setRelation('register', $campaign->register()->where('unit_id', $request->input('unit_id'))->orderBy('created_at', 'DESC')->paginate(20));
+        $campaign = Campaign::find($campaign_id);
+        $campaign->setRelation('register', $campaign->register()->where('unit_id', $unit_id)->orderBy('created_at', 'DESC')->paginate(20));
 
         $title = 'Detalhes da campanha';
         return view('painel.campaigns.show', compact('campaign', 'title'));

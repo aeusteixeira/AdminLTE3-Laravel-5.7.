@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div class="list-group">
                     @foreach ($accompaniment->comments as $comment)
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="{{ route('mkt.registers.show', ['id' => $comment->id]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                           <h5 class="mb-1">{{ $comment->name }}</h5>
                           <small>

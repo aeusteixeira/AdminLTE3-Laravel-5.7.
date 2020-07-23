@@ -51,6 +51,14 @@
 
             <div class="col-12 col-md-12 col-lg-5">
                 <h3 class="text-primary">{{ $register->name }}</h3>
+                <hr>
+                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-default">
+                    Atualizar
+                </button>
+                <button class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-email">
+                    <i class="fas fa-paper-plane"></i> Enviar e-mail
+                </button>
+                <hr>
                 @if ($register->user_id == null OR $register->user_id == Auth::user()->id)
                     <div class="text-muted">
                         <p class="text-sm">E-mail
@@ -141,4 +149,92 @@
 
   </section>
   <!-- /.content -->
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Atualizar registro</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('mkt.registers.update', ['id' => $register->id]) }}" method="post">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input required type="text" name="name" id="name" value="{{ $register->name }}" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input required type="email" class="form-control" name="email" value="{{ $register->email }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unit_id">Unidade</label>
+                        <select name="unit_id" id="unit_id" class="form-control">
+                            <optgroup label="Rio de Janeiro">
+                                <option value="1" {{ $register->unit_id == 1 ? 'selected' : '' }}>Nova Iguaçu</option>
+                                <option value="2" {{ $register->unit_id == 2 ? 'selected' : '' }}>Santa Cruz</option>
+                                <option value="7" {{ $register->unit_id == 7 ? 'selected' : '' }}>Bonsucesso</option>
+                            </optgroup>
+                            <optgroup label="Espírito Santo - ES">
+                                <option value="4" {{ $register->unit_id == 4 ? 'selected' : '' }}>Vitória</option>
+                            </optgroup>
+
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar alterações</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-email">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Enviar e-mail</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('mkt.registers.sendEmail') }}" method="post">
+                @csrf
+                <input type="hidden" name="register_id" value="{{ $register->id }}">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title">Titulo</label>
+                        <input type="text" name="title" id="title" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea required name="message" id="message" rows="5" class="form-control">Olá, {{ $register->name }}, tudo bem? Aqui é {{ Auth::user()->name }}. Estou encaminhando esse e-mail apenas para...</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Enviar e-mail</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 @endsection

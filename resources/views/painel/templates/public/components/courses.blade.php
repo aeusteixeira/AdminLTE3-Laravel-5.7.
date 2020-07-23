@@ -29,4 +29,16 @@
             Auxiliar de Farmacia
         </label>
     </div>
+    <div class="form-group form-check">
+        <input type="checkbox" name="course[]" class="form-check-input" value="Assistência Técnica" id="exampleCheck6">
+        <label class="form-check-label" for="exampleCheck6">
+            Assistência Técnica
+        </label>
+    </div>
+    <div class="form-group form-check">
+        <input type="checkbox" name="course[]" class="form-check-input" value="Cuidador de Idosos" id="exampleCheck7">
+        <label class="form-check-label" for="exampleCheck7">
+            Cuidador de Idosos
+        </label>
+    </div>
 </div>

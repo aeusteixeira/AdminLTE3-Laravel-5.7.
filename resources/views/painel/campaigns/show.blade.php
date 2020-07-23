@@ -129,6 +129,7 @@
                                             <form action="{{ route('mkt.registers.export')  }}" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" name="campaign_id" value="{{ $campaign->id  }}">
+                                                <input type="hidden" name="campaign_name" value="{{ $campaign->name_private  }}">
                                                 <div class="form-group">
                                                     <select name="unit_id" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
                                                         <option selected>Exportar por unidade</option>
@@ -187,28 +188,20 @@
                     OR
                     Auth::user()->level->administrative == 1)
                 <div class="col-sm-12 col-lg-4">
-                    <form method="POST" action="{{ route('mkt.filter.filterForUnit', ['id' => $campaign->id]) }}">
-                        @csrf
-                        <div class="input-group">
-                            <select name="unit_id" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                              <option selected>Filtrar por unidade</option>
-                              <optgroup label="Rio de Janeiro">
-                                <option value="1">Nova Iguaçu</option>
-                                <option value="3">São João</option>
-                                <option value="2">Santa Cruz</option>
-                                <option value="7">Bonsucesso</option>
-                            </optgroup>
-                            <optgroup label="Espírito Santo - ES">
-                                <option value="4">Vitória</option>
-                            </optgroup>
-                            </select>
-                            <div class="input-group-append">
-                              <button type="submit" class="btn btn-primary" type="button">
-                                <i class="fas fa-filter"></i>
-                              </button>
-                            </div>
-                          </div>
-                    </form>
+                    <div class="dropdown">
+                        <button class="btn btn-block btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-filter"></i> Filtrar por unidade
+                        </button>
+                        <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                            <h6 class="dropdown-header">Rio de Janeiro</h6>
+                            <a class="dropdown-item" href="{{ route('mkt.filter.filterForUnit', ['campaign' => $campaign->id, 'unit_id' => '1']) }}">Nova Iguaçu</a>
+                            <a class="dropdown-item" href="{{ route('mkt.filter.filterForUnit', ['campaign' => $campaign->id, 'unit_id' => '2']) }}">Santa Cruz</a>
+                            <a class="dropdown-item" href="{{ route('mkt.filter.filterForUnit', ['campaign' => $campaign->id, 'unit_id' => '7']) }}">Bonsucesso</a>
+                            <h6 class="dropdown-header">Espírito Santo - ES</h6>
+                            <a class="dropdown-item" href="{{ route('mkt.filter.filterForUnit', ['campaign' => $campaign->id, 'unit_id' => '4']) }}">Vitória</a>
+                        </div>
+                    </div>
+
                 </div>
             @endif
             </div>

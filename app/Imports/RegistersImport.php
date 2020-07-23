@@ -27,7 +27,6 @@ class RegistersImport implements ToCollection, WithValidation, WithHeadingRow
     public function collection(Collection $rows)
     {
         $register = new Register;
-        $campaignRegister = new CampaignRegister;
         $campaign = Campaign::find($this->campaign_id);
         set_time_limit(300);
         foreach ($rows as $row){
@@ -41,7 +40,6 @@ class RegistersImport implements ToCollection, WithValidation, WithHeadingRow
                     'courses' => $row['curso'],
                     'slot' => rand(1, 5),
                 ])->campaign()->attach($this->campaign_id);
-
             }
         }
     }

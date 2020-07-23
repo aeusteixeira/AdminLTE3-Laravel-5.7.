@@ -46,10 +46,11 @@ Route::get('logout', 'Auth\LoginController@logout')->name('exit');
         Route::resource('email', 'EmailController');
         Route::post('registers/export', 'RegisterUserController@exportAll')->name('registers.export');
         Route::post('registers/import', 'RegisterUserController@importAll')->name('registers.import');
+        Route::post('/sendEmail', 'RegisterUserController@sendEmail')->name('registers.sendEmail');
         Route::resource('registers', 'RegisterUserController');
         Route::post('registers/comment', 'CommentsCampaignRegistersController@store')->name('comment');
-        Route::post('campaigns/{id}', 'CampaignController@search')->name('search.register');
-        Route::post('campaigns/filter/{id}', 'CampaignController@filterForUnit')->name('filter.filterForUnit');
+        Route::post('campaigns/search/{id}', 'CampaignController@search')->name('search.register');
+        Route::get('campaigns/filter/{campaign_id}/{unit_id}', 'CampaignController@filterForUnit')->name('filter.filterForUnit');
     });
 
     //Rotas de CRUD
@@ -59,5 +60,4 @@ Route::get('logout', 'Auth\LoginController@logout')->name('exit');
     Route::get('/{url}/{id}/edit')->name('editCrud');
 });
 
-Route::get('/sendEmail', 'RegisterUserController@sendEmail');
 Route::get('/{slug}', 'CampaignController@view')->name('campaigns.view');
